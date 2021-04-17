@@ -1,7 +1,7 @@
 export const weaponTypes = [
     {
         name: 'Knobstick',
-        dmg: '6'
+        dmg: 6
     },
     {
         name: 'Dirk',
