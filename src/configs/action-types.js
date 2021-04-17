@@ -1,0 +1,4 @@
+export const ADD_WEAPON = 'ADD_WEAPON';
+export const ADD_XP = 'ADD_XP';
+export const CHANGE_PLAYER_POSITION = 'CHANGE_PLAYER_POSITION';
+export const CREATE_LEVEL = 'CREATE_LEVEL';
