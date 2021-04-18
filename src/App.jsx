@@ -1,9 +1,9 @@
 import './App.css';
+import Universe from "./universe"; // Пофиксить невидимость компонента
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <Universe/>
   );
 }
 
