@@ -1,5 +1,5 @@
 import './App.css';
-import Universe from "./universe"; // Пофиксить невидимость компонента
+import Universe from "./universe/universe";
 
 function App() {
   return (

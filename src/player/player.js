@@ -9,8 +9,8 @@ function Player({ position }) {
                 position:"relative",
                 width:"20px",
                 height:"20px",
-                top: position[1],
-                left: position[0],
+                // top: position[1],
+                // left: position[0],
                 backgroundColor:"black"
                 //backgroundImage: 'url(`${playerSprite})'
                 //backgroundPosition: '0 0',

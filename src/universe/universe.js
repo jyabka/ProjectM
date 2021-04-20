@@ -1,6 +1,6 @@
 import React from 'react';
-import Map from '../map'
-import Player from '../player'
+import Map from '../map/index'
+import Player from '../player/player'
 
 function Universe(props) {
     return(

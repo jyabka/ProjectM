@@ -1,5 +1,5 @@
 import store from '../configs/store'
-import { SPRITE_SIZE } from "../config/settings";
+import { SPRITE_SIZE } from "../configs/settings";
 
 export default function Movement(player){
 
