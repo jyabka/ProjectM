@@ -1,4 +1,5 @@
 const initialState = {
+    position: [1,2],
     health: 100,
     xp: 0,
     weapon: {
@@ -9,7 +10,7 @@ const initialState = {
 
 const playerReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'CHANGE_PLAYER_POSITION':
+        case 'MOVE_CH':
             return {
                 ...action.payload
             }

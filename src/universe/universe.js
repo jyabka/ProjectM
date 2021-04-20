@@ -5,8 +5,8 @@ import Player from '../player/player'
 function Universe(props) {
     return(
         <div>
-            <Map/>
-            <Player/>
+            <Map />
+            <Player />
         </div>
     )
 }

@@ -1,5 +1,5 @@
-import store from '../configs/store'
-import { SPRITE_SIZE } from "../configs/settings";
+import store from "../configs/store";
+import { SCREEN_HEIGHT, SPRITE_SIZE, SCREEN_WIDTH} from "../configs/settings";
 
 export default function Movement(player){
 
@@ -18,11 +18,20 @@ export default function Movement(player){
         }
     }
 
+    function borderObserver(oldPosition, newPosition)
+    {
+        return (newPosition[0] >= 0 && newPosition[0] <=  SCREEN_WIDTH)
+        &&
+        (newPosition[1] >= 0 && newPosition[1] <=  SCREEN_HEIGHT)
+            ? newPosition : oldPosition
+    }
+
     function dispatchMove(direction){
+        const oldPosition = store.getState().player.position
         store.dispatch({
             type: 'MOVE_CH',
             payload:{
-                position: getNewPosition(direction)
+                position: borderObserver(oldPosition, getNewPosition(direction))
             }
 
         })
