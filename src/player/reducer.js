@@ -1,5 +1,6 @@
 const initialState = {
     position: [1,2],
+    // direction:
     health: 100,
     xp: 0,
     weapon: {
