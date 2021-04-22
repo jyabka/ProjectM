@@ -1,9 +1,13 @@
 import './App.css';
 import Universe from "./universe/universe";
+import Header from "./Header"
 
 function App() {
   return (
-    <Universe/>
+    <div>
+      <Header/>
+      <Universe/>
+    </div>
   );
 }
 
