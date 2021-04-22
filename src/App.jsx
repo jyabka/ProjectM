@@ -16,25 +16,25 @@ function App() {
   useKey(
     event => upArrow.includes(event.key),
     () => {
-      dispatch({type: MOVE_CH, direction: DIRECTIONS.UP});
+      dispatch({type: MOVE_CH, payload: DIRECTIONS.UP});
     }
   );
   useKey(
     event => downArrow.includes(event.key),
     () => {
-      dispatch({type: MOVE_CH, direction: DIRECTIONS.DOWN});
+      dispatch({type: MOVE_CH, payload: DIRECTIONS.DOWN});
     }
   );
   useKey(
     event => leftArrow.includes(event.key),
     () => {
-      dispatch({type: MOVE_CH, direction: DIRECTIONS.LEFT});
+      dispatch({type: MOVE_CH, payload: DIRECTIONS.LEFT});
     }
   );
   useKey(
     event => rightArrow.includes(event.key),
     () => {
-      dispatch({type: MOVE_CH, direction: DIRECTIONS.RIGHT});
+      dispatch({type: MOVE_CH, payload: DIRECTIONS.RIGHT});
     }
   );
 
