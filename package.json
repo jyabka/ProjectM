@@ -1,6 +1,6 @@
 {
   "name": "Deep Dark Dungeon",
-  "version": "0.1.5",
+  "version": "0.1.9",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
@@ -9,7 +9,9 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "react-use": "^17.2.3",
     "redux": "^4.0.5",
+    "storybook": "^6.2.8",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

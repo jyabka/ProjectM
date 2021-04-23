@@ -1,13 +1,16 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import {connect} from 'react-redux'
-import Movement from './movement'
 import playerSprite from './player_sprite.png'
 
-function Player({ position }) {
+function Player() {
+    const position = useSelector(state => state.player.position);
+    console.log(position);
+    
     return (
         <div
             style={{
-            position:"absolute",
+            position:"relative",
             width:"32px",
             height:"32px",
             top: position[1],
@@ -21,10 +24,4 @@ function Player({ position }) {
     )
 }
 
-function mapStateToProps(state){
-    return {
-        ...state.player
-    }
-}
-
-export default connect(mapStateToProps)(Movement(Player))
+export default Player;
