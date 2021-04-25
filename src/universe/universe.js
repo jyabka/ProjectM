@@ -1,5 +1,5 @@
 import React from 'react';
-import Map from '../map/index'
+import Map from '../mapgen/map-generator'
 import Player from '../player/player'
 
 function Universe(props) {

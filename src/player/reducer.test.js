@@ -10,12 +10,12 @@ test('getNextPosition', () => {
     expect(getNextPosition([0, 0], undefined)).toEqual([0, 0]);
 });
 
-test('boderObserver', () => {
+/*test('borderObserver', () => {
     expect(borderObserver([0, 0], [-1, 0])).toEqual([0, 0]);
     expect(borderObserver([0, 0], [SCREEN_WIDTH + 1, 0])).toEqual([0, 0]);
     expect(borderObserver([0, 0], [0, -1])).toEqual([0, 0]);
     expect(borderObserver([0, 0], [0, SCREEN_HEIGHT + 1])).toEqual([0, 0]);
-});
+});*/
 
 test('тест экшена MOVE_CH', () => {
     const action = {

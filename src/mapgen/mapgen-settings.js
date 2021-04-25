@@ -1,3 +1,3 @@
-DISMENSIONS = 40
-MAX_TUNNELS = 150
-MAX_LENGTH = 8
+export const DIMENSIONS = 30
+export const MAX_TUNNELS = 100
+export const MAX_LENGTH = 10

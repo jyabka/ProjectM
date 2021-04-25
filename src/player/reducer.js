@@ -35,18 +35,15 @@ function getNextPositionWithoutCollisionCheck(oldPosition, direction) {
     }
 }
 
-export function borderObserver(oldPosition, newPosition) {
+/*export function borderObserver(oldPosition, newPosition) {
     // WTF???
     return (newPosition[0] < 0 || newPosition[0] >  SCREEN_WIDTH  || newPosition[1] < 0 || newPosition[1] > SCREEN_HEIGHT)
         ? oldPosition
         : newPosition;
-}
+}*/
 
 export function getNextPosition(oldPosition, direction) {
-    return borderObserver(
-        oldPosition,
-        getNextPositionWithoutCollisionCheck(oldPosition, direction)
-    );
+    return getNextPositionWithoutCollisionCheck(oldPosition, direction)
 }
 
 

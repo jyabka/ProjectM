@@ -1,4 +1,5 @@
-import {DISMENSIONS, MAX_TUNNELS, MAX_LENGTH} from "./mapgen-settings"
+import {DIMENSIONS, MAX_TUNNELS, MAX_LENGTH} from "./mapgen-settings";
+import './map_design.css';
 
 function createGrid(num, dimensions) {
     let grid = [];
@@ -12,7 +13,7 @@ function createGrid(num, dimensions) {
 }
 
 function createMap() {
-    let dimensions = DISMENSIONS, // width and height of the map
+    let dimensions = DIMENSIONS, // width and height of the map
         maxTunnels = MAX_TUNNELS, // max number of tunnels possible
         maxLength = MAX_LENGTH, // max length each tunnel can have
         map = createGrid(1, dimensions), // create a 2d array full of 1's
@@ -60,3 +61,23 @@ function createMap() {
     }
     return map; // all our tunnels have been created and our map is complete, so lets return it to our render()
 };
+
+export default function Map() {
+    let grid = createMap();
+    return(
+        <div>
+            <table className="grid">
+                <thead>
+                {grid.map((obj, row) => <tr key={row}>{obj.map((obj2, col) =>< td className = {
+                    obj2 === 1
+                        ? 'wall'
+                        : 'tunnel'
+                }
+                key = {
+                col
+                } > </td>)}</tr>)}
+            </thead>
+            </table>
+        </div>
+    )
+}
