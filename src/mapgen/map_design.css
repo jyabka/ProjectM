@@ -1,9 +1,9 @@
 td {
     margin: 0;
     padding: 0px;
-    min-width: 2em;
-    width: 2em;
-    height: 2em;
+    min-width: 32px;
+    width: 32px;
+    height: 32px;
     text-align: center;
 }
 
