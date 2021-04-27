@@ -1,7 +1,7 @@
-import {DIMENSIONS, MAX_TUNNELS, MAX_LENGTH} from "./mapgen-settings";
+import {DIMENSIONS, MAX_TUNNELS, MAX_LENGTH,WALL} from "./mapgen-settings";
 import './map_design.css';
 
-function createGrid(num, dimensions) {
+export function createGrid(num, dimensions) {
     let grid = [];
     for (let i = 0; i < dimensions; i++) {
         grid.push([]);
@@ -12,18 +12,15 @@ function createGrid(num, dimensions) {
     return grid;
 }
 
-function createMap() {
-    let dimensions = DIMENSIONS, // width and height of the map
-        maxTunnels = MAX_TUNNELS, // max number of tunnels possible
-        maxLength = MAX_LENGTH, // max length each tunnel can have
-        map = createGrid(1, dimensions), // create a 2d array full of 1's
+export function createMap(dimensions, maxTunnels, maxLength) {
+    let map = createGrid(WALL, dimensions), // create a 2d array full of 1's
         currentRow = Math.floor(Math.random() * dimensions), // our current row - start at a random spot
         currentColumn = Math.floor(Math.random() * dimensions), // our current column - start at a random spot
         directions = [[-1, 0], [1, 0], [0, -1], [0, 1]], // array to get a random direction from (left,right,up,down)
         lastDirection = [], // save the last direction we went
         randomDirection; // next turn/direction - holds a value from directions
 
-    // lets create some tunnels - while maxTunnels, dimentions, and maxLength  is greater than 0.
+    // lets create some tunnels - while maxTunnels, dimensions, and maxLength  is greater than 0.
     while (maxTunnels && dimensions && maxLength) {
 
         // lets get a random direction - until it is a perpendicular to our lastDirection
@@ -60,16 +57,16 @@ function createMap() {
         }
     }
     return map; // all our tunnels have been created and our map is complete, so lets return it to our render()
-};
+}
 
 export default function Map() {
-    let grid = createMap();
+    let grid = createMap(DIMENSIONS, MAX_TUNNELS, MAX_LENGTH,WALL);
     return(
         <div>
             <table className="grid">
                 <thead>
                 {grid.map((obj, row) => <tr key={row}>{obj.map((obj2, col) =>< td className = {
-                    obj2 === 1
+                    obj2 === WALL
                         ? 'wall'
                         : 'tunnel'
                 }
