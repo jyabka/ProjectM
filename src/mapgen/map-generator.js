@@ -1,5 +1,7 @@
 import {DIMENSIONS, MAX_TUNNELS, MAX_LENGTH,WALL} from "./mapgen-settings";
 import './map_design.css';
+import Player from '../player/player'
+
 
 export function createGrid(num, dimensions) {
     let grid = [];
@@ -74,7 +76,9 @@ export default function Map() {
                 col
                 } > </td>)}</tr>)}
             </thead>
+            <Player/>
             </table>
         </div>
+        
     )
 }

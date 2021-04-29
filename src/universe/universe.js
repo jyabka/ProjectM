@@ -6,7 +6,6 @@ function Universe(props) {
     return(
         <div>
             <Map />
-            <Player />
         </div>
     )
 }
