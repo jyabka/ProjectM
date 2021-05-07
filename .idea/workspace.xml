@@ -2,20 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c76aad77-256f-49ce-970f-5d71522b00c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/deep-dark-fantasy.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/constants.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/constants/settings.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/core/gen.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/core/room.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/tile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/tiles.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/core/utilities.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Header.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constans/settings.jsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +25,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1sDOj9NMnWMZkDdGogk8CmxKofM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -52,6 +52,8 @@
       <workItem from="1620403872868" duration="1721000" />
       <workItem from="1620405751076" duration="7000" />
       <workItem from="1620420876193" duration="1008000" />
+      <workItem from="1620421935134" duration="474000" />
+      <workItem from="1620422423015" duration="1375000" />
     </task>
     <servers />
   </component>
