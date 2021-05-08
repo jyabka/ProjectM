@@ -1,5 +1,5 @@
-import Const from '../core/constants'
-import { generateMap } from '../core/map'
+import Const from '../constants/settings'
+import { generateMap } from '../core/mapgen'
 
 const mapInitialState = generateMap(Const.WIDTH, Const.HEIGHT);
 
