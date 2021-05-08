@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Grid from '../outputers/grid';
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
     return {
         tiles: state.map.tiles,
     }

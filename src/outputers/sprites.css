@@ -1,0 +1,61 @@
+.sprite {
+    background-image:  url(./textures/spritesheet.png);
+    background-repeat: no-repeat;
+    display: block;
+}
+
+div[class*="Player"]{
+    background-position: -0px -48px;
+}
+
+.Boss-10 {
+    background-position: -48px -48px;
+}
+
+.Enemy-1, .Enemy-2, .Enemy-3 {
+    background-position: -64px -32px;
+}
+
+.Enemy-4, .Enemy-5, .Enemy-6 {
+    background-position: -0px -32px;
+}
+
+.Enemy-7, .Enemy-8, .Enemy-9 {
+    background-position: -32px -32px;
+}
+
+.Health-1 {
+    background-position: -0px -16px;
+}
+
+.Health-2 {
+    background-position: -16px -16px;
+}
+
+.Health-3 {
+    background-position: -32px -16px;
+}
+
+.Health-4 {
+    background-position: -48px -16px;
+}
+
+.Health-5 {
+    background-position: -64px -16px;
+}
+
+.Health-6 {
+    background-position: -80px -16px;
+}
+
+.Weapon-1 {
+    background-position: -0px -0px;
+}
+
+.Weapon-2 {
+    background-position: -16px -0px;
+}
+
+.Weapon-3 {
+    background-position: -32px -0px;
+}

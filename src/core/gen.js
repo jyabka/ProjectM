@@ -18,7 +18,6 @@ const Dungeon = function Dungeon() {
     const s = new Victor(0, -1);
     const w = new Victor(-1, 0);
 
-    // The four cardinal directions: north, south, east, and west.
     const cardinalDirections = [n, e, s, w];
 
     const bindStage = (givenStage) => {
@@ -88,7 +87,7 @@ const Dungeon = function Dungeon() {
                     neighbours.push(_tiles[x - 1][y - 1]);
                 }
                 _tiles[x][y].setNeighbours(neighbours);
-                _tiles[x][y].nesw = cardinalDir;
+                _tiles[x][y].directions = cardinalDir;
             }
         }
 
@@ -119,7 +118,6 @@ const Dungeon = function Dungeon() {
         }
 
         _connectRegions();
-
         _removeDeadEnds();
 
         let endDate = Date.now();
@@ -143,7 +141,6 @@ const Dungeon = function Dungeon() {
         }
 
         _startRegion();
-
         _carve(startX, startY);
 
         cells.push(new Victor(startX, startY));
@@ -164,8 +161,6 @@ const Dungeon = function Dungeon() {
             }
 
             if (unmadeCells.length) {
-                // Based on how "windy" passages are, try to prefer carving in the
-                // same direction.
                 let dir;
                 let cellsConvertedToStr = unmadeCells.map(v => v.toString());
                 if (lastDir && cellsConvertedToStr.indexOf(lastDir.toString()) > -1 && _.random(1, 100) > windingPercent) {

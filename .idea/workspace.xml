@@ -2,16 +2,30 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c76aad77-256f-49ce-970f-5d71522b00c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/core/dungeon.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/mapgen.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/mapgen_reducer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/game.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/player.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/camMove.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/core/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/outputers/core.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/outputers/sprites.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/outputers/sprites.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/outputers/spritesSet.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/reducers/sprites_reducer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/map.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/gen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/gen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/mapgen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/mapgen.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/outputers/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/enemies.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/outputers/textures/wallset.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +59,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Новая папка\deep-dark-fantasy\src" />
       <recent name="D:\Новая папка\deep-dark-fantasy" />
     </key>
   </component>
@@ -61,6 +76,8 @@
       <workItem from="1620420876193" duration="1008000" />
       <workItem from="1620421935134" duration="474000" />
       <workItem from="1620422423015" duration="2788000" />
+      <workItem from="1620439315636" duration="3272000" />
+      <workItem from="1620455249219" duration="9580000" />
     </task>
     <servers />
   </component>

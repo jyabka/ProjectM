@@ -22,13 +22,11 @@ export function generateMap(width, height) {
             } else if (type === 'floor' || type === 'door') {
                 dungeon.tiles[x][y].texture = '15';
             }
-            // convenience
             dungeon.tiles[x][y].x = x;
             dungeon.tiles[x][y].y = y;
 
-            // Seems these parameters are causing problems for redux dev tool (and cyclical datastructures aren't supposed to be used with redux)
             delete dungeon.tiles[x][y].neighbours;
-            delete dungeon.tiles[x][y].nesw;
+            delete dungeon.tiles[x][y].directions;
         }
     }
 
