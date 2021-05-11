@@ -38,7 +38,8 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 
-    const setupGame = (dispatch, getState) => {
+    function setupGame(dispatch, getState)
+    {
         const { rooms } = getState().map;
         const playerSpawn = GameGen.getSpawnFromRoom(rooms[0]);
         const spawns = GameGen.getMultipleSpawns(rooms.slice(1), 100);

@@ -92,7 +92,7 @@ class Core extends Component {
     }
 
     componentWillMount() {
-        const {x, y} = this.setupGame(this.props.rooms);
+        const {x, y} = this.props.setupGame(this.props.rooms);
         this.centerOn(x, y);
     }
 

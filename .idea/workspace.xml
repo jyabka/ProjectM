@@ -2,30 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c76aad77-256f-49ce-970f-5d71522b00c1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/game.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/player.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/camMove.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/core/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/outputers/core.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/outputers/sprites.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/outputers/sprites.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/outputers/spritesSet.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/reducers/sprites_reducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/actions/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/actions/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/map.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/map.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/gen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/gen.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/mapgen.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/mapgen.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/game.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/outputers/game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/enemies.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/outputers/textures/wallset.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reducers/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/reducers/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/outputers/core.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/outputers/core.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,10 +31,13 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="D:\WS\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
@@ -77,7 +63,12 @@
       <workItem from="1620421935134" duration="474000" />
       <workItem from="1620422423015" duration="2788000" />
       <workItem from="1620439315636" duration="3272000" />
-      <workItem from="1620455249219" duration="9580000" />
+      <workItem from="1620455249219" duration="9857000" />
+      <workItem from="1620468434503" duration="1591000" />
+      <workItem from="1620659957790" duration="2145000" />
+      <workItem from="1620664288594" duration="1040000" />
+      <workItem from="1620670283577" duration="589000" />
+      <workItem from="1620708631257" duration="1659000" />
     </task>
     <servers />
   </component>
