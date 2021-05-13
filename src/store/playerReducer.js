@@ -15,13 +15,13 @@ export const initialState = {
 function getNextPositionWithoutCollisionCheck(oldPosition, direction) {
      switch(direction) {
         case DIRECTIONS.LEFT:
-            return [ oldPosition[0] - SPRITE_SIZE , oldPosition[1] ]
+            return {x: oldPosition[0] - 1 ,y: oldPosition[1]}
         case DIRECTIONS.RIGHT:
-            return [ oldPosition[0] + SPRITE_SIZE , oldPosition[1] ]
+            return [ oldPosition[0] + 1 , oldPosition[1] ]
         case DIRECTIONS.UP:
-            return [ oldPosition[0]  , oldPosition[1] - SPRITE_SIZE ]
+            return [ oldPosition[0]  , oldPosition[1] - 1 ]
         case DIRECTIONS.DOWN:
-            return [ oldPosition[0]  , oldPosition[1] + SPRITE_SIZE ]
+            return [ oldPosition[0]  , oldPosition[1] + 1 ]
         default: return oldPosition;
     }
 }

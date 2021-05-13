@@ -1,9 +1,9 @@
 import { combineReducers, createStore } from 'redux';
-import mapReducer from "./mapReducer";
+import Reducer from "./mapReducer";
 
 
 const rootReducer = combineReducers({
-    map: mapReducer,
+    map: Reducer,
 })
 
 const store = createStore(

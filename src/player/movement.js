@@ -56,13 +56,5 @@ export default function Movement(player){
         handleKeyDown(e)
     })
 
-    function movePlayer(x, y){
-        const { tiles, player } = this.props;
-
-        if (tiles[x][y].type !== 'wall') {
-            return this.props.changePlayerPosition(x, y);
-        }
-    }
-
     return player
 }
