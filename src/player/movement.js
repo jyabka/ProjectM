@@ -1,5 +1,5 @@
-import store from "../configs/store";
-import { SCREEN_HEIGHT, SPRITE_SIZE, SCREEN_WIDTH} from "../configs/settings";
+import store from "../store/store";
+import { SCREEN_HEIGHT, SPRITE_SIZE, SCREEN_WIDTH } from "../configs/settings";
 
 export default function Movement(player){
 
@@ -56,6 +56,13 @@ export default function Movement(player){
         handleKeyDown(e)
     })
 
+    function movePlayer(x, y){
+        const { tiles, player } = this.props;
+
+        if (tiles[x][y].type !== 'wall') {
+            return this.props.changePlayerPosition(x, y);
+        }
+    }
 
     return player
 }

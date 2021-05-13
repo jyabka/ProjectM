@@ -1,11 +1,10 @@
 import React from 'react';
-import Map from '../mapgen/map-generator'
-import Player from '../player/player'
+import MapPresenter from "../mapgen/mapPresenter";
 
 function Universe(props) {
     return(
         <div>
-            <Map />
+            <MapPresenter />
         </div>
     )
 }

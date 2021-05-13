@@ -1,16 +1,8 @@
-import {SPRITE_SIZE,SCREEN_WIDTH,SCREEN_HEIGHT} from '../configs/settings'
+import {SPRITE_SIZE, DIRECTIONS} from '../configs/settings'
 
 export const MOVE_CH = 'MOVE_CH';
 
-export const DIRECTIONS = {
-    RIGHT: 'Right',
-    LEFT: 'Left',
-    DOWN: 'Down',
-    UP: 'Up'
-}
-
 export const initialState = {
-    position: [1,2],
     direction: DIRECTIONS.RIGHT,
     health: 100,
     xp: 0,
@@ -31,7 +23,6 @@ function getNextPositionWithoutCollisionCheck(oldPosition, direction) {
         case DIRECTIONS.DOWN:
             return [ oldPosition[0]  , oldPosition[1] + SPRITE_SIZE ]
         default: return oldPosition;
-
     }
 }
 
@@ -57,4 +48,4 @@ const playerReducer = (state = initialState, action) => {
         default: return state
     }
 }
-export default playerReducer
+export default playerReducer;

@@ -1,21 +1,19 @@
-import {DIMENSIONS, MAX_TUNNELS, MAX_LENGTH,WALL} from "./mapgen-settings";
+import {WALL_TILE} from '../configs/settings';
 import './map_design.css';
-import Player from '../player/player'
-
 
 export function createGrid(num, dimensions) {
     let grid = [];
-    for (let i = 0; i < dimensions; i++) {
+    for (let y = 0; y < dimensions; y++) {
         grid.push([]);
-        for (let j = 0; j < dimensions; j++) {
-            grid[i].push(num);
+        for (let x = 0; x < dimensions; x++) {
+            grid[y].push(num);
         }
     }
     return grid;
 }
 
 export function createMap(dimensions, maxTunnels, maxLength) {
-    let map = createGrid(WALL, dimensions), // create a 2d array full of 1's
+    let map = createGrid(WALL_TILE, dimensions), // create a 2d array full of 1's
         currentRow = Math.floor(Math.random() * dimensions), // our current row - start at a random spot
         currentColumn = Math.floor(Math.random() * dimensions), // our current column - start at a random spot
         directions = [[-1, 0], [1, 0], [0, -1], [0, 1]], // array to get a random direction from (left,right,up,down)
@@ -59,26 +57,4 @@ export function createMap(dimensions, maxTunnels, maxLength) {
         }
     }
     return map; // all our tunnels have been created and our map is complete, so lets return it to our render()
-}
-
-export default function Map() {
-    let grid = createMap(DIMENSIONS, MAX_TUNNELS, MAX_LENGTH,WALL);
-    return(
-        <div>
-            <table className="grid">
-                <thead>
-                {grid.map((obj, row) => <tr key={row}>{obj.map((obj2, col) =>< td className = {
-                    obj2 === WALL
-                        ? 'wall'
-                        : 'tunnel'
-                }
-                key = {
-                col
-                } > </td>)}</tr>)}
-            </thead>
-            <Player/>
-            </table>
-        </div>
-        
-    )
 }

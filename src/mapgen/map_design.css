@@ -24,3 +24,7 @@ table {
 .tunnel {
     background: transparent;
 }
+
+.player {
+    background: url("../player/player_sprite.png");
+}

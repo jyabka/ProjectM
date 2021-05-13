@@ -3,7 +3,8 @@ import { useKey } from 'react-use';
 import './App.css';
 import Universe from "./universe/universe";
 import Header from "./Header"
-import {MOVE_CH,DIRECTIONS} from "./player/reducer"
+import {MOVE_CH} from "./store/playerReducer"
+import {DIRECTIONS} from "./configs/settings";
 
 
 function App() {

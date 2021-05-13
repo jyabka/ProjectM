@@ -1,4 +1,4 @@
-import reducer, { getNextPosition, borderObserver, DIRECTIONS, MOVE_CH, initialState } from './reducer';
+import reducer, { getNextPosition, borderObserver, DIRECTIONS, MOVE_CH, initialState } from './playerReducer';
 import {SCREEN_WIDTH,SCREEN_HEIGHT, SPRITE_SIZE } from '../configs/settings'
 
 

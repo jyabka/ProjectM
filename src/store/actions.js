@@ -1,4 +1,4 @@
-import * as t from '../configs/action-types';
+import * as t from './action-types';
 
 function addWeapon(payload) {
 	return {
@@ -14,9 +14,11 @@ function addXP(payload) {
 	};
 }
 
-function changePlayerPosition(payload) {
+function changePlayerPosition(payload, x, y) {
 	return {
 		type: t.CHANGE_PLAYER_POSITION,
+		x,
+		y,
 		payload
 	};
 }
