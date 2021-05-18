@@ -8,7 +8,6 @@ function Enemy() {
     return (
       <div
         style={{
-          //backgroundColor: "greenyellow",
           position: "relative",
           width: "32px",
           height: "32px",

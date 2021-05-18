@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
-import playerSprite from './player_sprite.png'
+import playerSprite from '../textures/player_sprite.png'
 
 function Player() {
     const position = useSelector(state => state.player.position);
@@ -12,10 +12,6 @@ function Player() {
             position:"relative",
             width:"32px",
             height:"32px",
-            //backgroundColor:"black",
-            backgroundImage: `url('${playerSprite}')`
-            //backgroundPosition: '0 0',
-            //backgroundRepeatwidth: '20px',
         }}
         />
     )
