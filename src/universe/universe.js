@@ -1,11 +1,9 @@
 import React from 'react';
 import MapPresenter from "../mapgen/mapPresenter";
-import Header from "../Header";
 
-function Universe(props) {
+function Universe() {
     return(
         <div>
-            <Header />
             <MapPresenter />
         </div>
     )

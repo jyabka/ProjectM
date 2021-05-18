@@ -1,10 +1,12 @@
 import {createMap} from "../mapgen/map-generator";
 import {DIMENSIONS, MAX_LENGTH, MAX_TUNNELS} from "../mapgen/mapgen-settings";
-import {DIRECTIONS, FLOOR_TILE, PLAYER_TILE, WALL_TILE} from "../configs/settings";
+import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE} from "../configs/settings";
+import {MOVE_CH} from "./action-types";
 
 const initialState = {
     map: initField(),
     player: initPlayer(),
+    mob: initMob(),
 }
 
 //work w/ player
@@ -85,9 +87,9 @@ function getRandomPlayerSpawn(map) {
 
 //work w/ map
 function initField() {
-    const map = createMap(DIMENSIONS, MAX_TUNNELS, MAX_LENGTH, WALL_TILE);
-    const mapWithPlayer = getRandomPlayerSpawn(map);
-    return mapWithPlayer;
+    const map = createMap();
+    const mapWithEntities = getRandomSpawnEntities(map);
+    return mapWithEntities;
 }
 
 function getRandomTile(min: DIMENSIONS, max: DIMENSIONS) {
@@ -102,6 +104,34 @@ function copyField(map) {
         editedField[x] = [...editedField[x]];
     }
     return editedField;
+}
+
+//enemy functions
+function initMob(map){
+
+}
+
+
+export function getRandomMobSpawn(map) {
+    const copyField1 = copyField(map);
+    let x, y;
+    let isSpawned = false;
+    do {
+        x = getRandomTile(0, DIMENSIONS);
+        y = getRandomTile(0, DIMENSIONS);
+        if (copyField1[x][y] === FLOOR_TILE) {
+            isSpawned = true;
+        }
+    } while (!isSpawned);
+
+    copyField1[x][y] = ENEMY_TILE;
+    return copyField1;
+}
+
+function getRandomSpawnEntities(map){
+    let mapWithEntities = getRandomMobSpawn(map);
+    mapWithEntities = getRandomPlayerSpawn(mapWithEntities);
+    return mapWithEntities;
 }
 
 const Reducer = (state = initialState, action) => {

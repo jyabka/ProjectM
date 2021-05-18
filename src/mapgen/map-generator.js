@@ -1,5 +1,6 @@
 import {WALL_TILE} from '../configs/settings';
 import './map_design.css';
+import {DIMENSIONS, MAX_LENGTH, MAX_TUNNELS} from "./mapgen-settings";
 
 export function createGrid(num, dimensions) {
     let grid = [];
@@ -11,8 +12,11 @@ export function createGrid(num, dimensions) {
     }
     return grid;
 }
-
-export function createMap(dimensions, maxTunnels, maxLength) {
+//DIMENSIONS, MAX_TUNNELS, MAX_LENGTH
+export function createMap(
+    dimensions = DIMENSIONS,
+    maxTunnels = MAX_TUNNELS,
+    maxLength = MAX_LENGTH) {
     let map = createGrid(WALL_TILE, dimensions), // create a 2d array full of 1's
         currentRow = Math.floor(Math.random() * dimensions), // our current row - start at a random spot
         currentColumn = Math.floor(Math.random() * dimensions), // our current column - start at a random spot

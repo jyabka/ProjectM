@@ -28,3 +28,7 @@ table {
 .player {
     background: url("../player/player_sprite.png");
 }
+
+.mob {
+    background: url("../mobs/undead_sprite.png");
+}

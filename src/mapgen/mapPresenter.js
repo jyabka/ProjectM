@@ -1,4 +1,4 @@
-import {PLAYER_TILE, WALL_TILE} from "../configs/settings";
+import {ENEMY_TILE, PLAYER_TILE, WALL_TILE} from "../configs/settings";
 import {useSelector} from "react-redux";
 
 function Cell({cell, cellColumn}) {
@@ -6,6 +6,7 @@ function Cell({cell, cellColumn}) {
         switch (cell) {
             case WALL_TILE: return 'wall';
             case PLAYER_TILE: return 'player';
+            case ENEMY_TILE: return 'mob';
             default: return 'tunnel';
         }
     }
