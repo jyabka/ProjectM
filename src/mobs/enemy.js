@@ -1,5 +1,4 @@
 import React from "react";
-import settings from "../configs/settings"
 import {useSelector} from "react-redux";
 
 function Enemy() {
@@ -9,7 +8,7 @@ function Enemy() {
     return (
       <div
         style={{
-          backgroundColor: "greenyellow",
+          //backgroundColor: "greenyellow",
           position: "relative",
           width: "32px",
           height: "32px",
