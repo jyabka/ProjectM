@@ -1,6 +1,6 @@
 import {createMap} from "../mapgen/map-generator";
 import {DIMENSIONS, MAX_LENGTH, MAX_TUNNELS} from "../mapgen/mapgen-settings";
-import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE} from "../configs/settings";
+import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE,MOB_SPEED} from "../configs/settings";
 import {MOVE_CH} from "./action-types";
 
 const initialState = {
@@ -18,6 +18,7 @@ function movePlayer(map, direction) {
     const workingField = copyField(map);
     // найти позицию игрока
     const playerPos = playerFinder(workingField);
+    const mobPos = mobFinder(workingField);
     // вычислить следующую позицию
     const newPlayerPos = getNextPosition(playerPos, direction);
     if (!checkCollision(workingField, newPlayerPos)) {
@@ -35,9 +36,22 @@ function movePlayer(map, direction) {
 5. Изменяем позицию игрока
 */
 
-function checkCollision(map, playerPos) {
+export function checkCollision(map, playerPos) {
+
+    if (playerPos.x >= DIMENSIONS || playerPos.x<0 || playerPos.y >= DIMENSIONS || playerPos.y<0) return true;
+
     return map[playerPos.x][playerPos.y] === WALL_TILE;
 }
+
+// function mobMovement(playerPos,mobPos) {
+
+//     if (playerPos.x > mobPos.x) {
+//         mobPos.x = MOB_SPEED;
+//     }
+
+// }
+
+
 
 function playerFinder(workingField) {
     let x, y;
@@ -53,6 +67,23 @@ function playerFinder(workingField) {
 
     return {x, y};
 }
+
+function mobFinder(workingField) {
+    let x, y;
+    for (let row = 0; row < workingField.length; row++) {
+        for (let column = 0; column < workingField[row].length; column++) {
+            if (workingField[row][column] === ENEMY_TILE) {
+                x = row;
+                y = column;
+                break;
+            }
+        }
+    }
+
+    return {x, y};
+}
+
+
 
 function getNextPosition(playerPos, direction) {
     switch (direction) {
@@ -92,7 +123,7 @@ function initField() {
     return mapWithEntities;
 }
 
-function getRandomTile(min: DIMENSIONS, max: DIMENSIONS) {
+function getRandomTile(min = DIMENSIONS, max = DIMENSIONS) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;

@@ -7,6 +7,8 @@ export const WALL_TILE = 1;
 export const PLAYER_TILE = 2;
 export const ENEMY_TILE = 3;
 
+export const MOB_SPEED = 5;
+
 export const DIRECTIONS = {
     RIGHT: 'Right',
     LEFT: 'Left',
