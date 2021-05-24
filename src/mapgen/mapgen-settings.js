@@ -1,3 +1,3 @@
-export const DIMENSIONS = 10;
-export const MAX_TUNNELS = 13;
-export const MAX_LENGTH = 9;
+export const DIMENSIONS = 35;
+export const MAX_TUNNELS = 100;
+export const MAX_LENGTH = 33;

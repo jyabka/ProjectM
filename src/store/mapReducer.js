@@ -1,6 +1,6 @@
 import {createMap} from "../mapgen/map-generator";
 import {DIMENSIONS, MAX_LENGTH, MAX_TUNNELS} from "../mapgen/mapgen-settings";
-import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE,MOB_SPEED} from "../configs/settings";
+import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE, MOB_SPEED} from "../configs/settings";
 import {MOVE_CH} from "./action-types";
 
 const initialState = {
@@ -8,7 +8,6 @@ const initialState = {
     player: initPlayer(),
     mob: initMob(),
 }
-
 //work w/ player
 function initPlayer() {
     return {};
@@ -53,7 +52,7 @@ export function checkCollision(map, playerPos) {
 
 
 
-function playerFinder(workingField) {
+export function playerFinder(workingField) {
     let x, y;
     for (let row = 0; row < workingField.length; row++) {
         for (let column = 0; column < workingField[row].length; column++) {
@@ -117,7 +116,7 @@ function getRandomPlayerSpawn(map) {
 }
 
 //work w/ map
-function initField() {
+export function initField() {
     const map = createMap();
     const mapWithEntities = getRandomSpawnEntities(map);
     return mapWithEntities;
@@ -142,6 +141,11 @@ function initMob(map){
 
 }
 
+function getRandomMobCount(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 export function getRandomMobSpawn(map) {
     const copyField1 = copyField(map);
@@ -160,8 +164,11 @@ export function getRandomMobSpawn(map) {
 }
 
 function getRandomSpawnEntities(map){
-    let mapWithEntities = getRandomMobSpawn(map);
-    mapWithEntities = getRandomPlayerSpawn(mapWithEntities);
+    let mobCount = getRandomMobCount(5, 20);
+    let mapWithEntities = getRandomPlayerSpawn(map);
+    for (let mC=0;mC<mobCount; mC++) {
+        mapWithEntities = getRandomMobSpawn(mapWithEntities);
+    }
     return mapWithEntities;
 }
 

@@ -1,4 +1,5 @@
 import { ENEMY_TILE, SCREEN_HEIGHT,SCREEN_WIDTH, WALL_TILE } from "../configs/settings";
+import {initField, playerFinder} from "./mapReducer";
 
 const { DIMENSIONS } = require("../mapgen/mapgen-settings");
 const { getRandomMobSpawn, checkCollision } = require("./mapReducer");
@@ -54,12 +55,8 @@ test('checkCollision test', () => {
 });
 
 test('playerFinder', () => {
-    let x = 0;
-    let y = 0;
-    for (let row = 0; row < workingField.length; row++) {
-        for (let column = 0; column < workingField[row].length; column++) {
-            if (workingField[row][column] === PLAYER_TILE) {
-                x = row;
-                y = column;
-         
-})
+    const coords = playerFinder(initField());
+    expect(coords.x).toBeTruthy();
+    expect(coords.y).toBeTruthy();
+});
+
