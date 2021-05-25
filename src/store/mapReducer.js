@@ -18,12 +18,14 @@ function movePlayer(map, direction) {
     const workingField = copyField(map);
     // найти позицию игрока
     const playerPos = playerFinder(workingField);
-    const mobPos = mobFinder(workingField);
     // вычислить следующую позицию
     const newPlayerPos = getNextPosition(playerPos, direction);
     if (!checkWallCollision(workingField, newPlayerPos)) {
         workingField[playerPos.x][playerPos.y] = FLOOR_TILE;
         workingField[newPlayerPos.x][newPlayerPos.y] = PLAYER_TILE;
+    }
+    if(!checkMobCollision(workingField, newPlayerPos)){
+        // вызываемая функция , открывающая окно с битвой, и блокирующее движение
     }
     return workingField;
 }
@@ -41,15 +43,25 @@ export function checkWallCollision(map, playerPos) {
     return map[playerPos.x][playerPos.y] === WALL_TILE;
 }
 
-// function mobMovement(playerPos,mobPos) {
+export function checkMobCollision(map, playerPos) {
+    //if (playerPos.x >= DIMENSIONS || playerPos.x<0 || playerPos.y >= DIMENSIONS || playerPos.y<0) return true;
+    return map[playerPos.x][playerPos.y] === ENEMY_TILE;
+}
 
-//     if (playerPos.x > mobPos.x) {
-//         mobPos.x = MOB_SPEED;
-//     }
+export function mobFinder(workingField) {
+    let x, y;
+    for (let row = 0; row < workingField.length; row++) {
+        for (let column = 0; column < workingField[row].length; column++) {
+            if (workingField[row][column] === ENEMY_TILE) {
+                x = row;
+                y = column;
+                break;
+            }
+        }
+    }
 
-// }
-
-
+    return {x, y};
+}
 
 export function playerFinder(workingField) {
     let x, y;
@@ -65,22 +77,6 @@ export function playerFinder(workingField) {
 
     return {x, y};
 }
-
-function mobFinder(workingField) {
-    let x, y;
-    for (let row = 0; row < workingField.length; row++) {
-        for (let column = 0; column < workingField[row].length; column++) {
-            if (workingField[row][column] === ENEMY_TILE) {
-                x = row;
-                y = column;
-                break;
-            }
-        }
-    }
-
-    return {x, y};
-}
-
 
 
 function getNextPosition(playerPos, direction) {

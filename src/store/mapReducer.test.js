@@ -1,8 +1,8 @@
 import { ENEMY_TILE, SCREEN_HEIGHT,SCREEN_WIDTH, WALL_TILE } from "../configs/settings";
-import {initField, playerFinder} from "./mapReducer";
+import {initField, playerFinder,mobFinder} from "./mapReducer";
 
 const { DIMENSIONS } = require("../mapgen/mapgen-settings");
-const { getRandomMobSpawn, checkCollision } = require("./mapReducer");
+const { getRandomMobSpawn, checkWallCollision, checkMobCollision } = require("./mapReducer");
 const { createMap } = require("../mapgen/map-generator");
 
 test('getRandomMobSpawn', () => {
@@ -60,3 +60,17 @@ test('playerFinder', () => {
     expect(coords.y).toBeTruthy();
 });
 
+test('mobFinder', () => {
+    const coords = mobFinder(initField());
+    expect(coords.x).toBeTruthy();
+    expect(coords.y).toBeTruthy();
+    
+});
+
+// test
+test('test checkCollisionMobs ', () =>{
+    const map = createMap();
+    map[2][3] = ENEMY_TILE;
+    expect(checkMobCollision(map, {x:2, y:2})).toBeFalsy();
+    expect(checkMobCollision(map, {x:2, y:3})).toBeTruthy();
+})
