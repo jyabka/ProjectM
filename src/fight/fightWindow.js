@@ -1,12 +1,20 @@
 import React from 'react';
-import './fightWindow.css';
+import './fightWindow.css'
+import '../../node_modules/nes.css/css/nes.css'
 
 export default function FightWindow() {
+    
     return (
-        <div className="fightWindow">
-            <button id ="bth1" text="Attack"/>
-            <button id ="bth2" text="Defend"/>
-            <button id= "bth3" text="Inventory"/>
-        </div>
-    )
+      <div className="fhtWindow">
+        <button type="button" class="nes-btn is-primary">
+          Attack
+        </button>
+        <button type="button" class="nes-btn is-success">
+          Defend
+        </button>
+        <button type="button" class="nes-btn is-warning">
+          Inventory
+        </button>
+      </div>
+    );
 }
