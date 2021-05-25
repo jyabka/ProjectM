@@ -23,25 +23,25 @@ test('checkCollision test', () => {
         x: -1,
         y: 0
     };
-    expect(checkCollision(createMap(), playerPos)).toBe(true);
+    expect(checkWallCollision(createMap(), playerPos)).toBe(true);
     
     playerPos = {
         x: 0,
         y: -1
     };
-    expect(checkCollision(createMap(), playerPos)).toBe(true);
+    expect(checkWallCollision(createMap(), playerPos)).toBe(true);
 
     playerPos = {
         x: DIMENSIONS,
         y: 0
     };
-    expect(checkCollision(createMap(), playerPos)).toBe(true);
+    expect(checkWallCollision(createMap(), playerPos)).toBe(true);
 
     playerPos = {
         x: DIMENSIONS,
         y: 0
     };
-    expect(checkCollision(createMap(), playerPos)).toBe(true);
+    expect(checkWallCollision(createMap(), playerPos)).toBe(true);
 
     playerPos = {
         x: 0,
@@ -49,7 +49,7 @@ test('checkCollision test', () => {
     };
     const map = createMap();
     map[0][0] = WALL_TILE;
-    const collisionResult = checkCollision(map, playerPos);
+    const collisionResult = checkWallCollision(map, playerPos);
     expect(collisionResult).toBe(true);
 
 });

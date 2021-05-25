@@ -10,6 +10,7 @@ const initialState = {
 }
 //work w/ player
 function initPlayer() {
+    let isFighting = false;
     return {};
 }
 
@@ -20,7 +21,7 @@ function movePlayer(map, direction) {
     const mobPos = mobFinder(workingField);
     // вычислить следующую позицию
     const newPlayerPos = getNextPosition(playerPos, direction);
-    if (!checkCollision(workingField, newPlayerPos)) {
+    if (!checkWallCollision(workingField, newPlayerPos)) {
         workingField[playerPos.x][playerPos.y] = FLOOR_TILE;
         workingField[newPlayerPos.x][newPlayerPos.y] = PLAYER_TILE;
     }
@@ -35,10 +36,8 @@ function movePlayer(map, direction) {
 5. Изменяем позицию игрока
 */
 
-export function checkCollision(map, playerPos) {
-
+export function checkWallCollision(map, playerPos) {
     if (playerPos.x >= DIMENSIONS || playerPos.x<0 || playerPos.y >= DIMENSIONS || playerPos.y<0) return true;
-
     return map[playerPos.x][playerPos.y] === WALL_TILE;
 }
 
@@ -176,7 +175,8 @@ const Reducer = (state = initialState, action) => {
     switch (action.type) {
         case 'MOVE_CH':
             return {...state, map: movePlayer(state.map, action.payload)};
-
+        case 'FIGHT_START':
+            return ;
         default:
             return state;
     }
