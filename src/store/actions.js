@@ -22,3 +22,9 @@ function changePlayerPosition(payload, x, y) {
 		payload
 	};
 }
+
+function startFight() {
+	return {
+		
+	}
+}

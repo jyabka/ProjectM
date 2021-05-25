@@ -1,7 +1,7 @@
 import {createMap} from "../mapgen/map-generator";
 import {DIMENSIONS, MAX_LENGTH, MAX_TUNNELS} from "../mapgen/mapgen-settings";
 import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE, MOB_SPEED} from "../configs/settings";
-import {MOVE_CH} from "./action-types";
+import {MOVE_CH, START_FIGHT} from "./action-types";
 
 const initialState = {
     map: initField(),
@@ -10,10 +10,14 @@ const initialState = {
 }
 //work w/ player
 function initPlayer() {
-    let isFighting = false;
-    return {};
+    return {
+        health: 20,
+        dmg: 4,
+        isFighting: false
+    };
 }
 
+// updateMap??
 function movePlayer(map, direction) {
     const workingField = copyField(map);
     // найти позицию игрока
@@ -30,6 +34,16 @@ function movePlayer(map, direction) {
     return workingField;
 }
 
+export function updatePlayer(map, player, direction) {
+    const playerPos = playerFinder(map);
+    const newPlayerPos = getNextPosition(playerPos, direction);
+    if(checkMobCollision(map, newPlayerPos)){
+        return {...player, isFighting: true};
+    }
+    return player;
+}
+
+
 /*
 1. Копируем field
 2. Находим игрока на field / PLAYER_TILE = 2
@@ -44,7 +58,6 @@ export function checkWallCollision(map, playerPos) {
 }
 
 export function checkMobCollision(map, playerPos) {
-    //if (playerPos.x >= DIMENSIONS || playerPos.x<0 || playerPos.y >= DIMENSIONS || playerPos.y<0) return true;
     return map[playerPos.x][playerPos.y] === ENEMY_TILE;
 }
 
@@ -133,7 +146,10 @@ function copyField(map) {
 
 //enemy functions
 function initMob(map){
-
+    return {
+        health: 20,
+        dmg: 2,
+    }
 }
 
 function getRandomMobCount(min, max) {
@@ -167,15 +183,29 @@ function getRandomSpawnEntities(map){
     return mapWithEntities;
 }
 
-const Reducer = (state = initialState, action) => {
+//init fight
+
+function startFight(){
+    
+}
+
+export default function(state = initialState, action) {
     switch (action.type) {
         case 'MOVE_CH':
-            return {...state, map: movePlayer(state.map, action.payload)};
-        case 'FIGHT_START':
-            return ;
+            if (state.player.isFighting) return state;
+            return {
+                ...state, 
+                map: movePlayer(state.map, action.payload), // updateMap?
+                player: updatePlayer(state.map, state.player, action.payload),
+            };
+        case 'FIGHT_ACTION':
+            if (!state.player.isFighting) return state;
+
+            // return {
+            //     ...state, 
+            //     player: fight( state.player, action.payload),
+            // };
         default:
             return state;
     }
-
 }
-export default Reducer;

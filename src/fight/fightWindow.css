@@ -1,0 +1,28 @@
+.fightWindow
+{
+    position: absolute;
+    bottom:0%;
+    right: 12.5%;
+    width: 75%;
+    height: 30%;
+    background: rgb(144, 50, 50);
+}
+
+#bth1{
+    width:20%;
+    height:15%;
+    margin:5%;
+}
+
+#bth2{
+    width:20%;
+    height:15%;
+    margin:5%;
+}
+
+#bth3{
+    width:20%;
+    height:15%;
+    margin:5%;
+
+}

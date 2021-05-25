@@ -1,14 +1,16 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useKey } from 'react-use';
 import './App.css';
 import Universe from "./universe/universe";
 import Header from "./Header"
 import {DIRECTIONS} from "./configs/settings";
 import {MOVE_CH} from "./store/action-types";
+import FightWindow from "./fight/fightWindow";
 
 
 function App() {
   const dispatch = useDispatch();
+  const isFighting = useSelector(state => state.map.player.isFighting);
   const upArrow = ['w', 'W', 'ArrowUp'];
   const downArrow = ['s', 'S', 'ArrowDown'];
   const leftArrow = ['a', 'A', 'ArrowLeft'];
@@ -43,6 +45,7 @@ function App() {
     <div>
       <Header/>
       <Universe/>
+      {isFighting && <FightWindow/>}
     </div>
   );
 }
