@@ -5,6 +5,11 @@ import {DIMENSIONS, MAX_LENGTH, MAX_TUNNELS} from "../mapgen/mapgen-settings";
 import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE, MOB_SPEED} from "../configs/settings";
 import {MOVE_CH, START_FIGHT} from "./action-types";
 
+export const FIGHT_VARIANTS = {
+    ATTACK: 'ATTACK',
+    DEFEND: 'DEFEND',
+}
+
 const mobs = initMobs();
 
 const initialState = {
@@ -52,7 +57,6 @@ export function updatePlayer(map, player, direction) {
     return player;
 }
 
-
 function getMobIdByCoordinates(coords) {
     for(let mob of mobs) {
         if (mob.x === coords.x && mob.y === coords.y) {
@@ -60,7 +64,6 @@ function getMobIdByCoordinates(coords) {
         }
     }
 }
-
 /*
 1. Копируем field
 2. Находим игрока на field / PLAYER_TILE = 2
@@ -215,9 +218,14 @@ function getRandomSpawnEntities(map){
     return mapWithEntities;
 }
 
-function fightMob(){
-    
-}
+function strikeMob(mobs,player){
+
+
+} 
+
+// function strikePlayer(){
+
+// }
 
 export default function(state = initialState, action) {
     switch (action.type) {
@@ -230,11 +238,21 @@ export default function(state = initialState, action) {
             };
         case 'FIGHT_ACTION':
             if (!state.player.isFighting) return state;
-            //  return {
-            //      ...state, 
-            //     player: fightMob( state.player, action.payload),
-            //     mob : 
-            //  };
+
+            const mobs = state.mobs.map(mob => {
+                if (mob.id === state.player.fightingWith) {
+                    return {...mob, health: mob.health - state.player.dmg }
+                }
+                return mob;
+            });
+
+            // attack player ...
+
+            return{
+                ...state,
+                mobs,
+
+            }
         default:
             return state;
     }
