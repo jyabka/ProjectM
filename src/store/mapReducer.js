@@ -1,19 +1,24 @@
+// import nanoid from 'nanoid';
+import {nanoid} from 'nanoid';
 import {createMap} from "../mapgen/map-generator";
 import {DIMENSIONS, MAX_LENGTH, MAX_TUNNELS} from "../mapgen/mapgen-settings";
 import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE, MOB_SPEED} from "../configs/settings";
 import {MOVE_CH, START_FIGHT} from "./action-types";
 
+const mobs = initMobs();
+
 const initialState = {
     map: initField(),
     player: initPlayer(),
-    mob: initMob(),
+    mobs,
 }
 //work w/ player
 function initPlayer() {
     return {
         health: 20,
         dmg: 4,
-        isFighting: false
+        isFighting: false,
+        fightingWith: null
     };
 }
 
@@ -38,11 +43,23 @@ export function updatePlayer(map, player, direction) {
     const playerPos = playerFinder(map);
     const newPlayerPos = getNextPosition(playerPos, direction);
     if(checkMobCollision(map, newPlayerPos)){
-        return {...player, isFighting: true};
+        return {
+            ...player,
+            isFighting: true,
+            fightingWith: getMobIdByCoordinates(newPlayerPos)
+        };
     }
     return player;
 }
 
+
+function getMobIdByCoordinates(coords) {
+    for(let mob of mobs) {
+        if (mob.x === coords.x && mob.y === coords.y) {
+            return mob.id;
+        }
+    }
+}
 
 /*
 1. Копируем field
@@ -145,21 +162,29 @@ function copyField(map) {
 }
 
 //enemy functions
-function initMob(map){
-    return {
-        health: 20,
-        dmg: 2,
+function initMobs(){
+    const mobs = [];
+    let mobCount = getRandomNumber(5, 20);
+    for (let mC=0;mC<mobCount; mC++) {
+        mobs.push({
+            id: nanoid(),
+            health: 20,
+            dmg: 2,
+        });
     }
+    return mobs;
 }
 
-function getRandomMobCount(min, max) {
+function getRandomNumber(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export function getRandomMobSpawn(map) {
+export function getRandomMobSpawn(map, mob) {
     const copyField1 = copyField(map);
+
+    // function 1
     let x, y;
     let isSpawned = false;
     do {
@@ -169,23 +194,28 @@ export function getRandomMobSpawn(map) {
             isSpawned = true;
         }
     } while (!isSpawned);
+    //
 
+    // function 2
     copyField1[x][y] = ENEMY_TILE;
+
+    // function 3
+    mob.x = x;
+    mob.y = y;
     return copyField1;
 }
 
+
+
 function getRandomSpawnEntities(map){
-    let mobCount = getRandomMobCount(5, 20);
     let mapWithEntities = getRandomPlayerSpawn(map);
-    for (let mC=0;mC<mobCount; mC++) {
-        mapWithEntities = getRandomMobSpawn(mapWithEntities);
+    for (let mobIndex=0;mobIndex<mobs.length; mobIndex++) {
+        mapWithEntities = getRandomMobSpawn(mapWithEntities, mobs[mobIndex]);
     }
     return mapWithEntities;
 }
 
-//init fight
-
-function startFight(){
+function fightMob(){
     
 }
 
@@ -200,11 +230,11 @@ export default function(state = initialState, action) {
             };
         case 'FIGHT_ACTION':
             if (!state.player.isFighting) return state;
-
-            // return {
-            //     ...state, 
-            //     player: fight( state.player, action.payload),
-            // };
+            //  return {
+            //      ...state, 
+            //     player: fightMob( state.player, action.payload),
+            //     mob : 
+            //  };
         default:
             return state;
     }
