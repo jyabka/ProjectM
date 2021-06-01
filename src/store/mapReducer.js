@@ -12,6 +12,8 @@ export const FIGHT_VARIANTS = {
 
 const mobs = initMobs();
 
+const MOB_DMG = 2;
+
 const initialState = {
     map: initField(),
     player: initPlayer(),
@@ -171,8 +173,7 @@ function initMobs(){
     for (let mC=0;mC<mobCount; mC++) {
         mobs.push({
             id: nanoid(),
-            health: 20,
-            dmg: 2,
+            health: 20
         });
     }
     return mobs;
@@ -243,16 +244,28 @@ export default function(state = initialState, action) {
                 if (mob.id === state.player.fightingWith) {
                     return {...mob, health: mob.health - state.player.dmg }
                 }
+                
                 return mob;
             });
 
-            // attack player ...
-
             return{
                 ...state,
-                mobs,
-
+                mobs, 
+                player: {
+                    ...state.player,
+                    health: state.player.health - MOB_DMG
+                }
             }
+            
+        case 'DEFEND_ACTION':
+            if (!state.player.isFighting) return state;
+            return {
+                ...state,
+                player: {
+                    ...state.player,
+                    health: state.player.health + 1
+                }
+            }  
         default:
             return state;
     }

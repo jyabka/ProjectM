@@ -21,14 +21,16 @@ export default function FightWindow() {
       >
         Attack
       </button>
-      <button type="button" class="nes-btn is-success">
+      <button type="button" class="nes-btn is-success"onClick = {() => 
+        dispatch({
+          type:'DEFEND_ACTION',
+          payload: FIGHT_VARIANTS.DEFEND
+        })}>
         Defend
       </button>
-      <button type="button" class="nes-btn is-warning">
-        Inventory
-      </button>
-      <h3>{mob.health} {mob.dmg}</h3>
-      <h3>{player.health} {player.dmg}</h3>
+      <span className="nes-text is-disabled">{mob.health} {mob.dmg}</span>
+      <br />
+      <span className="nes-text is-disabled">{player.health} {player.dmg}</span>
     </div>
   );
 }
