@@ -1,5 +1,5 @@
 import { combineReducers, createStore } from 'redux';
-import Reducer from "./mapReducer";
+import Reducer from "./gameReducer";
 
 
 const rootReducer = combineReducers({

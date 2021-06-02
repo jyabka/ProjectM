@@ -1,8 +1,8 @@
 import { ENEMY_TILE, SCREEN_HEIGHT,SCREEN_WIDTH, WALL_TILE } from "../configs/settings";
-import {initField, playerFinder,mobFinder} from "./mapReducer";
+import {initField, playerFinder,mobFinder} from "./gameReducer";
 
 const { DIMENSIONS } = require("../mapgen/mapgen-settings");
-const { getRandomMobSpawn, checkWallCollision, checkMobCollision } = require("./mapReducer");
+const { getRandomMobSpawn, checkWallCollision, checkMobCollision } = require("./gameReducer");
 const { createMap } = require("../mapgen/map-generator");
 
 test('getRandomMobSpawn', () => {

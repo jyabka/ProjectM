@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './fightWindow.css';
 import 'nes.css/css/nes.css';
 import {selectFightingMob,selectPlayer} from '../store/mapSelectors';
-import { FIGHT_VARIANTS } from '../store/mapReducer';
+import { FIGHT_VARIANTS } from '../store/gameReducer';
 
 export default function FightWindow() {
   const mob = useSelector(selectFightingMob);
@@ -28,9 +28,9 @@ export default function FightWindow() {
         })}>
         Defend
       </button>
-      <span className="nes-text is-disabled">{mob.health} {mob.dmg}</span>
+      <span className="nes-text is-disabled">Enemy HP:{mob.health} DMG:{mob.dmg}</span>
       <br />
-      <span className="nes-text is-disabled">{player.health} {player.dmg}</span>
+      <span className="nes-text is-disabled">PLayer HP:{player.health} DMG:{player.dmg}</span>
     </div>
   );
 }

@@ -1,9 +1,8 @@
-// import nanoid from 'nanoid';
 import {nanoid} from 'nanoid';
 import {createMap} from "../mapgen/map-generator";
-import {DIMENSIONS, MAX_LENGTH, MAX_TUNNELS} from "../mapgen/mapgen-settings";
+import {DIMENSIONS} from "../mapgen/mapgen-settings";
 import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE, MOB_SPEED} from "../configs/settings";
-import {MOVE_CH, START_FIGHT} from "./action-types";
+import {MOVE_CH} from "./action-types";
 
 export const FIGHT_VARIANTS = {
     ATTACK: 'ATTACK',
@@ -29,8 +28,8 @@ function initPlayer() {
     };
 }
 
-// updateMap??
-function movePlayer(map, direction) {
+
+function mapUpdate(map, direction) {
     const workingField = copyField(map);
     // найти позицию игрока
     const playerPos = playerFinder(workingField);
@@ -210,7 +209,6 @@ export function getRandomMobSpawn(map, mob) {
 }
 
 
-
 function getRandomSpawnEntities(map){
     let mapWithEntities = getRandomPlayerSpawn(map);
     for (let mobIndex=0;mobIndex<mobs.length; mobIndex++) {
@@ -219,14 +217,6 @@ function getRandomSpawnEntities(map){
     return mapWithEntities;
 }
 
-function strikeMob(mobs,player){
-
-
-} 
-
-// function strikePlayer(){
-
-// }
 
 export default function(state = initialState, action) {
     switch (action.type) {
@@ -234,15 +224,23 @@ export default function(state = initialState, action) {
             if (state.player.isFighting) return state;
             return {
                 ...state, 
-                map: movePlayer(state.map, action.payload), // updateMap?
+                map: mapUpdate(state.map, action.payload),
                 player: updatePlayer(state.map, state.player, action.payload),
             };
         case 'FIGHT_ACTION':
             if (!state.player.isFighting) return state;
 
             const mobs = state.mobs.map(mob => {
-                if (mob.id === state.player.fightingWith) {
-                    return {...mob, health: mob.health - state.player.dmg }
+                if (mob.health > 0) {
+                    if (mob.id === state.player.fightingWith) {
+                        return {...mob, health: mob.health - state.player.dmg}
+                    }
+                }
+                if (mob.health <= 0) {
+                    return {
+                        isFighting: false,
+                        fightingWith: null
+                    }
                 }
                 
                 return mob;
