@@ -1,7 +1,7 @@
 import {nanoid} from 'nanoid';
 import {createMap} from "../mapgen/map-generator";
 import {DIMENSIONS} from "../mapgen/mapgen-settings";
-import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE, MOB_SPEED} from "../configs/settings";
+import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE} from "../configs/settings";
 import {MOVE_CH} from "./action-types";
 
 export const FIGHT_VARIANTS = {
@@ -21,6 +21,7 @@ const initialState = {
 //work w/ player
 function initPlayer() {
     return {
+        maxHealth: 30,
         health: 20,
         dmg: 4,
         isFighting: false,
@@ -169,10 +170,11 @@ function copyField(map) {
 function initMobs(){
     const mobs = [];
     let mobCount = getRandomNumber(5, 20);
-    for (let mC=0;mC<mobCount; mC++) {
+    for (let mC=0; mC<mobCount; mC++) {
         mobs.push({
             id: nanoid(),
-            health: 20
+            health: 20,
+            dmg: 2
         });
     }
     return mobs;
@@ -231,22 +233,25 @@ export default function(state = initialState, action) {
             if (!state.player.isFighting) return state;
 
             const mobs = state.mobs.map(mob => {
-                if (mob.health > 0) {
+                if (mob.health !== 0) {
                     if (mob.id === state.player.fightingWith) {
                         return {...mob, health: mob.health - state.player.dmg}
                     }
                 }
-                if (mob.health <= 0) {
+                else
                     return {
-                        isFighting: false,
-                        fightingWith: null
-                    }
+                        ...state,
+                        ...mob,
+                        player: {
+                            ...state.player,
+                            fightingWith: null,
+                            isFighting: false,
+                        }
                 }
-                
                 return mob;
             });
 
-            return{
+            return {
                 ...state,
                 mobs, 
                 player: {
@@ -254,7 +259,8 @@ export default function(state = initialState, action) {
                     health: state.player.health - MOB_DMG
                 }
             }
-            
+
+
         case 'DEFEND_ACTION':
             if (!state.player.isFighting) return state;
             return {

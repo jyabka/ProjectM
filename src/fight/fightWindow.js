@@ -28,7 +28,8 @@ export default function FightWindow() {
         })}>
         Defend
       </button>
-      <span className="nes-text is-disabled">Enemy HP:{mob.health} DMG:{mob.dmg}</span>
+        <br />
+      <span className="nes-text is-disabled">Enemy HP:{mob.health} DMG:2</span>
       <br />
       <span className="nes-text is-disabled">PLayer HP:{player.health} DMG:{player.dmg}</span>
     </div>
