@@ -4,13 +4,15 @@ import './App.css';
 import Universe from "./universe/universe";
 import Header from "./Header"
 import {DIRECTIONS} from "./configs/settings";
-import {MOVE_CH} from "./store/action-types";
-import FightWindow from "./fight/fightWindow";
+import {ACTIONS} from "./store/action-types";
+import FightWindow from "./windows/fightWindow";
+import GameOverWindow from "./windows/gameOverWindow";
+import {GAME_STATUS} from "./store/gameReducer";
 
 
 function App() {
   const dispatch = useDispatch();
-  const isFighting = useSelector(state => state.map.player.isFighting);
+  const status = useSelector(state => state.map.status);
   const upArrow = ['w', 'W', 'ArrowUp'];
   const downArrow = ['s', 'S', 'ArrowDown'];
   const leftArrow = ['a', 'A', 'ArrowLeft'];
@@ -19,25 +21,25 @@ function App() {
   useKey(
     event => upArrow.includes(event.key),
     () => {
-      dispatch({type: MOVE_CH, payload: DIRECTIONS.UP});
+      dispatch({type: ACTIONS.MOVE_CH, payload: DIRECTIONS.UP});
     }
   );
   useKey(
     event => downArrow.includes(event.key),
     () => {
-      dispatch({type: MOVE_CH, payload: DIRECTIONS.DOWN});
+      dispatch({type: ACTIONS.MOVE_CH, payload: DIRECTIONS.DOWN});
     }
   );
   useKey(
     event => leftArrow.includes(event.key),
     () => {
-      dispatch({type: MOVE_CH, payload: DIRECTIONS.LEFT});
+      dispatch({type: ACTIONS.MOVE_CH, payload: DIRECTIONS.LEFT});
     }
   );
   useKey(
     event => rightArrow.includes(event.key),
     () => {
-      dispatch({type: MOVE_CH, payload: DIRECTIONS.RIGHT});
+      dispatch({type: ACTIONS.MOVE_CH, payload: DIRECTIONS.RIGHT});
     }
   );
 
@@ -45,7 +47,8 @@ function App() {
     <div>
       <Header/>
       <Universe/>
-      {isFighting && <FightWindow/>}
+      {status === GAME_STATUS.PLAYER_DIED && <GameOverWindow/>}
+      {status === GAME_STATUS.PLAYER_FIGHTING && <FightWindow/>}
     </div>
   );
 }

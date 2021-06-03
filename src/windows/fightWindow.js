@@ -21,7 +21,7 @@ export default function FightWindow() {
       >
         Attack
       </button>
-      <button type="button" class="nes-btn is-success"onClick = {() => 
+      <button type="button" class="nes-btn is-success" onClick = {() =>
         dispatch({
           type:'DEFEND_ACTION',
           payload: FIGHT_VARIANTS.DEFEND
