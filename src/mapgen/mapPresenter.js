@@ -15,12 +15,12 @@ function Cell({cell, cellColumn}) {
 }
 
 export default function MapPresenter() {
-    const mapField = useSelector(state => state.map.map)
+    const mapField = useSelector(state => state.map.map);
     return(
         <div>
             <table className="grid">
                 <thead>
-                {mapField.map((obj, row) => <tr key={row}>{obj.map((obj2, col) => <Cell cell={obj2} cellColumn={col}/>)}</tr>)}
+                {mapField.map((obj, row) => <tr key={row}>{obj.map((obj2, col) => <Cell cell={obj2} cellColumn={col} key={col}/>)}</tr>)}
                 </thead>
             </table>
         </div>

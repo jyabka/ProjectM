@@ -7,13 +7,13 @@ import {ACTIONS} from "./action-types";
 export const FIGHT_VARIANTS = {
     ATTACK: 'ATTACK',
     DEFEND: 'DEFEND',
-}
+};
 
 export const GAME_STATUS = {
     PLAYER_WANDER: 2,
     PLAYER_FIGHTING: 1,
     PLAYER_DIED: 0,
-}
+};
 
 const mobs = initMobs();
 
@@ -24,7 +24,8 @@ const initialState = {
     player: initPlayer(),
     status: initStatus(),
     mobs,
-}
+};
+
 //work w/ player
 function initPlayer() {
     return {
@@ -32,7 +33,6 @@ function initPlayer() {
         health: 20,
         dmg: 4,
         fightingWith: null,
-
     };
 }
 
@@ -60,12 +60,13 @@ export function getEnemyID(state, direction) {
     const playerPos = playerFinder(state.map);
     const newPlayerPos = getNextPosition(playerPos, direction);
     if(checkMobCollision(state.map, newPlayerPos)){
-        return getMobIdByCoordinates(newPlayerPos);
+        return getMobIdByCoordinates(state, newPlayerPos);
     }
 }
 
-function getMobIdByCoordinates(coords) {
-    for(let mob of mobs) {
+function getMobIdByCoordinates(state, coords) {
+    console.log(state.mobs);
+    for(let mob of state.mobs) {
         if (mob.x === coords.x && mob.y === coords.y) {
             return mob.id;
         }
@@ -122,13 +123,13 @@ export function playerFinder(workingField) {
 function getNextPosition(playerPos, direction) {
     switch (direction) {
         case DIRECTIONS.UP:
-            return {x: playerPos.x - 1, y: playerPos.y}
+            return {x: playerPos.x - 1, y: playerPos.y};
         case DIRECTIONS.DOWN:
-            return {x: playerPos.x + 1, y: playerPos.y}
+            return {x: playerPos.x + 1, y: playerPos.y};
         case DIRECTIONS.LEFT:
-            return {x: playerPos.x, y: playerPos.y - 1}
+            return {x: playerPos.x, y: playerPos.y - 1};
         case DIRECTIONS.RIGHT:
-            return {x: playerPos.x, y: playerPos.y + 1}
+            return {x: playerPos.x, y: playerPos.y + 1};
         default:
             return playerPos;
     }
@@ -157,6 +158,29 @@ export function initField() {
     return mapWithEntities;
 }
 
+/**
+ * 1. Сгенерировать карту. +
+ * 2. Генерим массив мобов. +
+ * 3. Для моба находим место.
+ *    3.1. Прописываем координаты в моба. +
+ *    3.2. Меняем клетку на карте. +
+ * 4. Возвращаем карту и мобов. +
+ */
+function initMapAndMobs() {
+    const mobs = initMobs();
+    let map = createMap();
+    map = getRandomPlayerSpawn(map); // разместили игрока
+
+    for (let mob of mobs) {
+        const {x, y} = getRandomMobSpawnCoords(map);
+        map[x][y] = ENEMY_TILE;
+        mob.x = x;
+        mob.y = y;
+    }
+
+    return {mobs, map};
+}
+
 function getRandomTile(min = DIMENSIONS, max = DIMENSIONS) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -174,7 +198,7 @@ function copyField(map) {
 //enemy functions
 function initMobs(){
     const mobs = [];
-    let mobCount = getRandomNumber(5, 20);
+    let mobCount = getRandomNumber(2, 3);
     for (let mC=0; mC<mobCount; mC++) {
         mobs.push({
             id: nanoid(),
@@ -182,6 +206,7 @@ function initMobs(){
             dmg: 2
         });
     }
+
     return mobs;
 }
 
@@ -215,6 +240,21 @@ export function getRandomMobSpawn(map, mob) {
     return copyField1;
 }
 
+export function getRandomMobSpawnCoords(map) {
+    const copyField1 = copyField(map);
+    let x, y;
+    let isSpawned = false;
+    do {
+        x = getRandomTile(0, DIMENSIONS);
+        y = getRandomTile(0, DIMENSIONS);
+        if (copyField1[x][y] === FLOOR_TILE) {
+            isSpawned = true;
+        }
+    } while (!isSpawned);
+    return { x, y };
+}
+
+
 
 function getRandomSpawnEntities(map){
     let mapWithEntities = getRandomPlayerSpawn(map);
@@ -224,12 +264,12 @@ function getRandomSpawnEntities(map){
     return mapWithEntities;
 }
 
-
-export default function(state = initialState, action) {
+export default function reducer(state = initialState, action) {
     switch (action.type) {
         case ACTIONS.MOVE_CH:
             if (state.status !== GAME_STATUS.PLAYER_WANDER) return state;
             const enemyId = getEnemyID(state, action.payload);
+            console.log(enemyId);
             if (enemyId) return {
                 ...state,
                 status: GAME_STATUS.PLAYER_FIGHTING,
@@ -237,7 +277,7 @@ export default function(state = initialState, action) {
                     ...state.player,
                     fightingWith: enemyId
                 }
-            }
+            };
             return {
                 ...state,
                 map: mapUpdate(state.map, action.payload)
@@ -248,7 +288,7 @@ export default function(state = initialState, action) {
             const mobs = state.mobs.map(mob => {
                 if (mob.id === state.player.fightingWith) {
                     if (mob.health > 0)
-                        return {...mob, health: mob.health - state.player.dmg}
+                        return {...mob, health: mob.health - state.player.dmg};
                     else {
                         mobKilled = mob;
                         return false;
@@ -257,6 +297,16 @@ export default function(state = initialState, action) {
                 return mob;
             }).filter(Boolean);
 
+            if(mobs.length === 0){
+                const mapAndMobs = initMapAndMobs();
+                return {
+                    ...state,
+                    mobs: mapAndMobs.mobs,
+                    map: mapAndMobs.map,
+                    status: GAME_STATUS.PLAYER_WANDER
+                };
+            }
+
             if (mobKilled) {
                 const newMap = copyField(state.map);
                 newMap[mobKilled.x][mobKilled.y] = FLOOR_TILE;
@@ -264,6 +314,7 @@ export default function(state = initialState, action) {
                 return {
                     ...state,
                     map: newMap,
+                    mobs,
                     player: {
                         ...state.player,
                         fightingWith: null,
@@ -286,7 +337,7 @@ export default function(state = initialState, action) {
                     ...state.player,
                     health: state.player.health - MOB_DMG
                 }
-            }
+            };
 
         case ACTIONS.DEFEND_ACTION:
             if (state.status !== GAME_STATUS.PLAYER_FIGHTING) return state;
@@ -296,7 +347,10 @@ export default function(state = initialState, action) {
                     ...state.player,
                     health: state.player.health + 1
                 }
-            }
+            };
+        case ACTIONS.NEXT_LEVEL:
+            return state;
+
         case ACTIONS.RESET:
             return initialState;
 
