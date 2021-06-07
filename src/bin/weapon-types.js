@@ -31,4 +31,4 @@ export const weaponTypes = [
         name: 'Nodachi',
         dmg: 46
     }
-]
+];

@@ -11,4 +11,4 @@ export const potionsTypes = [
         name: 'Poison',
         health: -7
     }
-]
+];

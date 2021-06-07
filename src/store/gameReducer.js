@@ -1,18 +1,18 @@
-import {nanoid} from 'nanoid';
-import {createMap} from "../mapgen/map-generator";
-import {DIMENSIONS} from "../mapgen/mapgen-settings";
-import {DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE} from "../configs/settings";
-import {ACTIONS} from "./action-types";
+import { nanoid } from 'nanoid';
+import { createMap } from '../mapgen/map-generator';
+import { DIMENSIONS } from '../mapgen/mapgen-settings';
+import { DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE } from '../configs/settings';
+import { ACTIONS } from './action-types';
 
 export const FIGHT_VARIANTS = {
     ATTACK: 'ATTACK',
-    DEFEND: 'DEFEND',
+    DEFEND: 'DEFEND'
 };
 
 export const GAME_STATUS = {
     PLAYER_WANDER: 2,
     PLAYER_FIGHTING: 1,
-    PLAYER_DIED: 0,
+    PLAYER_DIED: 0
 };
 
 const mobs = initMobs();
@@ -23,7 +23,7 @@ const initialState = {
     map: initField(),
     player: initPlayer(),
     status: initStatus(),
-    mobs,
+    mobs
 };
 
 //work w/ player
@@ -32,12 +32,12 @@ function initPlayer() {
         maxHealth: 30,
         health: 20,
         dmg: 4,
-        fightingWith: null,
+        fightingWith: null
     };
 }
 
 function initStatus() {
-    return GAME_STATUS.PLAYER_WANDER
+    return GAME_STATUS.PLAYER_WANDER;
 }
 
 function mapUpdate(map, direction) {
@@ -50,7 +50,7 @@ function mapUpdate(map, direction) {
         workingField[playerPos.x][playerPos.y] = FLOOR_TILE;
         workingField[newPlayerPos.x][newPlayerPos.y] = PLAYER_TILE;
     }
-    if(!checkMobCollision(workingField, newPlayerPos)){
+    if (!checkMobCollision(workingField, newPlayerPos)) {
         // вызываемая функция , открывающая окно с битвой, и блокирующее движение
     }
     return workingField;
@@ -59,14 +59,14 @@ function mapUpdate(map, direction) {
 export function getEnemyID(state, direction) {
     const playerPos = playerFinder(state.map);
     const newPlayerPos = getNextPosition(playerPos, direction);
-    if(checkMobCollision(state.map, newPlayerPos)){
+    if (checkMobCollision(state.map, newPlayerPos)) {
         return getMobIdByCoordinates(state, newPlayerPos);
     }
 }
 
 function getMobIdByCoordinates(state, coords) {
     console.log(state.mobs);
-    for(let mob of state.mobs) {
+    for (let mob of state.mobs) {
         if (mob.x === coords.x && mob.y === coords.y) {
             return mob.id;
         }
@@ -81,7 +81,13 @@ function getMobIdByCoordinates(state, coords) {
 */
 
 export function checkWallCollision(map, playerPos) {
-    if (playerPos.x >= DIMENSIONS || playerPos.x<0 || playerPos.y >= DIMENSIONS || playerPos.y<0) return true;
+    if (
+        playerPos.x >= DIMENSIONS ||
+        playerPos.x < 0 ||
+        playerPos.y >= DIMENSIONS ||
+        playerPos.y < 0
+    )
+        return true;
     return map[playerPos.x][playerPos.y] === WALL_TILE;
 }
 
@@ -101,7 +107,7 @@ export function mobFinder(workingField) {
         }
     }
 
-    return {x, y};
+    return { x, y };
 }
 
 export function playerFinder(workingField) {
@@ -116,20 +122,19 @@ export function playerFinder(workingField) {
         }
     }
 
-    return {x, y};
+    return { x, y };
 }
-
 
 function getNextPosition(playerPos, direction) {
     switch (direction) {
         case DIRECTIONS.UP:
-            return {x: playerPos.x - 1, y: playerPos.y};
+            return { x: playerPos.x - 1, y: playerPos.y };
         case DIRECTIONS.DOWN:
-            return {x: playerPos.x + 1, y: playerPos.y};
+            return { x: playerPos.x + 1, y: playerPos.y };
         case DIRECTIONS.LEFT:
-            return {x: playerPos.x, y: playerPos.y - 1};
+            return { x: playerPos.x, y: playerPos.y - 1 };
         case DIRECTIONS.RIGHT:
-            return {x: playerPos.x, y: playerPos.y + 1};
+            return { x: playerPos.x, y: playerPos.y + 1 };
         default:
             return playerPos;
     }
@@ -172,13 +177,13 @@ function initMapAndMobs() {
     map = getRandomPlayerSpawn(map); // разместили игрока
 
     for (let mob of mobs) {
-        const {x, y} = getRandomMobSpawnCoords(map);
+        const { x, y } = getRandomMobSpawnCoords(map);
         map[x][y] = ENEMY_TILE;
         mob.x = x;
         mob.y = y;
     }
 
-    return {mobs, map};
+    return { mobs, map };
 }
 
 function getRandomTile(min = DIMENSIONS, max = DIMENSIONS) {
@@ -196,10 +201,10 @@ function copyField(map) {
 }
 
 //enemy functions
-function initMobs(){
+function initMobs() {
     const mobs = [];
     let mobCount = getRandomNumber(2, 3);
-    for (let mC=0; mC<mobCount; mC++) {
+    for (let mC = 0; mC < mobCount; mC++) {
         mobs.push({
             id: nanoid(),
             health: 20,
@@ -254,11 +259,9 @@ export function getRandomMobSpawnCoords(map) {
     return { x, y };
 }
 
-
-
-function getRandomSpawnEntities(map){
+function getRandomSpawnEntities(map) {
     let mapWithEntities = getRandomPlayerSpawn(map);
-    for (let mobIndex=0; mobIndex < mobs.length; mobIndex++) {
+    for (let mobIndex = 0; mobIndex < mobs.length; mobIndex++) {
         mapWithEntities = getRandomMobSpawn(mapWithEntities, mobs[mobIndex]);
     }
     return mapWithEntities;
@@ -269,15 +272,16 @@ export default function reducer(state = initialState, action) {
         case ACTIONS.MOVE_CH:
             if (state.status !== GAME_STATUS.PLAYER_WANDER) return state;
             const enemyId = getEnemyID(state, action.payload);
-            console.log(enemyId);
-            if (enemyId) return {
-                ...state,
-                status: GAME_STATUS.PLAYER_FIGHTING,
-                player: {
-                    ...state.player,
-                    fightingWith: enemyId
-                }
-            };
+            if (enemyId) {
+                return {
+                    ...state,
+                    status: GAME_STATUS.PLAYER_FIGHTING,
+                    player: {
+                        ...state.player,
+                        fightingWith: enemyId
+                    }
+                };
+            }
             return {
                 ...state,
                 map: mapUpdate(state.map, action.payload)
@@ -285,19 +289,21 @@ export default function reducer(state = initialState, action) {
         case ACTIONS.FIGHT_ACTION:
             if (state.status !== GAME_STATUS.PLAYER_FIGHTING) return state;
             let mobKilled;
-            const mobs = state.mobs.map(mob => {
-                if (mob.id === state.player.fightingWith) {
-                    if (mob.health > 0)
-                        return {...mob, health: mob.health - state.player.dmg};
-                    else {
-                        mobKilled = mob;
-                        return false;
+            const mobs = state.mobs
+                .map(mob => {
+                    if (mob.id === state.player.fightingWith) {
+                        if (mob.health > 0)
+                            return { ...mob, health: mob.health - state.player.dmg };
+                        else {
+                            mobKilled = mob;
+                            return false;
+                        }
                     }
-                }
-                return mob;
-            }).filter(Boolean);
+                    return mob;
+                })
+                .filter(Boolean);
 
-            if(mobs.length === 0){
+            if (mobs.length === 0) {
                 const mapAndMobs = initMapAndMobs();
                 return {
                     ...state,
@@ -317,10 +323,10 @@ export default function reducer(state = initialState, action) {
                     mobs,
                     player: {
                         ...state.player,
-                        fightingWith: null,
+                        fightingWith: null
                     },
                     status: GAME_STATUS.PLAYER_WANDER
-                }
+                };
             }
 
             if (state.player.health - MOB_DMG <= 0) {

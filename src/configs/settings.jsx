@@ -12,4 +12,4 @@ export const DIRECTIONS = {
     LEFT: 'Left',
     DOWN: 'Down',
     UP: 'Up'
-}
+};
