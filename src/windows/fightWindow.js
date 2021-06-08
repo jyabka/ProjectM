@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './fightWindow.css';
 import 'nes.css/css/nes.css';
@@ -9,6 +9,11 @@ export default function FightWindow() {
     const mob = useSelector(selectFightingMob);
     const dispatch = useDispatch();
     const player = useSelector(selectPlayer);
+    const [disable, setDisable] = useState(true);
+
+    function colorHandler(disable) {
+        return disable ? "is-normal" : "is-disabled"
+    }
 
     return (
         <div className="fhtWindow">
@@ -26,13 +31,15 @@ export default function FightWindow() {
             </button>
             <button
                 type="button"
-                className="nes-btn is-success"
-                onClick={() =>
+                className={"nes-btn" + " " + colorHandler(disable)}
+                disabled={!disable}
+                onClick={() => {
                     dispatch({
                         type: 'DEFEND_ACTION',
                         payload: FIGHT_VARIANTS.DEFEND
-                    })
-                }
+                    });
+                    setDisable(!disable);
+                }}
             >
                 Defend
             </button>

@@ -17,7 +17,10 @@ export const GAME_STATUS = {
 
 const mobs = initMobs();
 
-const MOB_DMG = 2;
+const MOB_DMG = 5;
+
+const min = 20;
+const max = 40;
 
 const initialState = {
     map: initField(),
@@ -29,7 +32,7 @@ const initialState = {
 //work w/ player
 function initPlayer() {
     return {
-        maxHealth: 30,
+        maxHealth: min + Math.floor(Math.random() * (max - min)),
         health: 20,
         dmg: 4,
         fightingWith: null
@@ -351,7 +354,7 @@ export default function reducer(state = initialState, action) {
                 ...state,
                 player: {
                     ...state.player,
-                    health: state.player.health + 1
+                    health: state.player.health + state.player.maxHealth
                 }
             };
         case ACTIONS.NEXT_LEVEL:
