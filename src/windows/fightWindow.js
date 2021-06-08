@@ -12,7 +12,7 @@ export default function FightWindow() {
     const [disable, setDisable] = useState(true);
 
     function colorHandler(disable) {
-        return disable ? "is-normal" : "is-disabled"
+        return disable ? 'is-normal' : 'is-disabled';
     }
 
     return (
@@ -31,7 +31,7 @@ export default function FightWindow() {
             </button>
             <button
                 type="button"
-                className={"nes-btn" + " " + colorHandler(disable)}
+                className={'nes-btn' + ' ' + colorHandler(disable)}
                 disabled={!disable}
                 onClick={() => {
                     dispatch({
@@ -47,7 +47,7 @@ export default function FightWindow() {
             <span className="nes-text is-disabled">Enemy HP:{mob.health} DMG:2</span>
             <br />
             <span className="nes-text is-disabled">
-                PLayer HP:{player.health} DMG:{player.dmg}
+                PLayer HP:{player.health} DMG:{player.dmg} SCORE: {player.score}
             </span>
         </div>
     );

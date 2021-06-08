@@ -17,7 +17,7 @@ export const GAME_STATUS = {
 
 const mobs = initMobs();
 
-const MOB_DMG = 5;
+const MOB_DMG = 2;
 
 const min = 20;
 const max = 40;
@@ -35,6 +35,7 @@ function initPlayer() {
         maxHealth: min + Math.floor(Math.random() * (max - min)),
         health: 20,
         dmg: 4,
+        score: 0,
         fightingWith: null
     };
 }
@@ -52,9 +53,6 @@ function mapUpdate(map, direction) {
     if (!checkWallCollision(workingField, newPlayerPos)) {
         workingField[playerPos.x][playerPos.y] = FLOOR_TILE;
         workingField[newPlayerPos.x][newPlayerPos.y] = PLAYER_TILE;
-    }
-    if (!checkMobCollision(workingField, newPlayerPos)) {
-        // вызываемая функция , открывающая окно с битвой, и блокирующее движение
     }
     return workingField;
 }
@@ -95,6 +93,14 @@ export function checkWallCollision(map, playerPos) {
 }
 
 export function checkMobCollision(map, playerPos) {
+    if (
+        playerPos.x >= DIMENSIONS ||
+        playerPos.x < 0 ||
+        playerPos.y >= DIMENSIONS ||
+        playerPos.y < 0
+    )
+        return true;
+
     return map[playerPos.x][playerPos.y] === ENEMY_TILE;
 }
 
@@ -326,7 +332,8 @@ export default function reducer(state = initialState, action) {
                     mobs,
                     player: {
                         ...state.player,
-                        fightingWith: null
+                        fightingWith: null,
+                        score: state.player.score + 1
                     },
                     status: GAME_STATUS.PLAYER_WANDER
                 };
