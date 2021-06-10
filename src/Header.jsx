@@ -1,11 +1,10 @@
 import React from 'react';
 
-export default ({ level }) => {
+export default () => {
     return (
-        <div className="strip">
-            <h1>
-                <span className={`title title-${level}`}>ReduxReactRPG</span>
-            </h1>
+        <div className="nes-container is-dark with-title">
+            <p className="title">ReactReduxRPG</p>
+            <p>Good luck, Stranger.</p>
         </div>
     );
 };
