@@ -1,0 +1,14 @@
+
+ @import url("https://fonts.googleapis.com/css?family=Press+Start+2P");
+ @import url("https://unpkg.com/nes.css/css/nes.css");
+
+
+.fhtWindow {
+    position: absolute;
+    top:10%;
+    left: 30%;
+    background-color: rgb(25, 26, 27);
+    width: 30%;
+    height:25%;
+}
+
