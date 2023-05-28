@@ -2,32 +2,32 @@ export const enemiesTypes = [
     {
         lvl: 1,
         name: 'Rat',
-        dmg: 4,
-        health: 10
+        dmg: 1,
+        health: 8
     },
     {
         lvl: 1,
         name: 'Bat',
-        dmg: 6,
-        health: 13
+        dmg: 2,
+        health: 7
     },
     {
         lvl: 2,
         name: 'Crocodile',
-        dmg: 15,
+        dmg: 3,
         health: 25
     },
     {
         lvl: 2,
         name: 'Goblin',
-        dmg: 21,
-        health: 3
+        dmg: 4,
+        health: 15
     },
     {
         lvl: 3,
         name: 'Armored Goblin',
-        dmg: 23,
-        health: 7
+        dmg: 4,
+        health: 20
     },
     {
         lvl: 2,

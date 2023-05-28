@@ -1,3 +1,4 @@
-export const DIMENSIONS = 15;
-export const MAX_TUNNELS = 100;
-export const MAX_LENGTH = 33;
+// settings for generation
+export const DIMENSIONS = 50;
+export const MAX_TUNNELS = 150;
+export const MAX_LENGTH = 8;

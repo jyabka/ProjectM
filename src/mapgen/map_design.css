@@ -1,34 +1,43 @@
 td {
     margin: 0;
-    padding: 0px;
-    min-width: 32px;
-    width: 32px;
-    height: 32px;
+    padding: 0.5rem;
+    min-width: 1rem;
+    width: 1rem;
+    height: 1rem;
     text-align: center;
 }
 
-.grid {
-    margin: 1em auto;
-    background: url("../textures/floor_tile.png");
+.grid{
 }
 
 table {
     border-collapse: collapse;
-    border-spacing: -1 !important;
+    border-spacing: 0 !important;
+}
+.stats_container {
+    width: 18rem;
+    height: auto;
+}
+.stat_list {
+    padding: 0;
+    margin-right: 1rem;
+}
+.map_container {
+    display: flex;
 }
 
 .wall {
-    background: url("../textures/wall_tile.png");
+    background: black
 }
 
 .tunnel {
-    background: url("../textures/floor_tile.png");
+    background: gray;
 }
 
 .player {
-    background: url("../textures/player_sprite.png");
+    background: blue;
 }
 
 .mob {
-    background: url("../textures/undead_sprite.png");
+    background: red;
 }
