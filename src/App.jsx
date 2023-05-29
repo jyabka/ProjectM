@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useKey } from 'react-use';
 import './App.css';
-import Universe from './universe/universe';
+import UI from './UI/UI';
 import Header from './Header';
 import { DIRECTIONS } from './configs/settings';
 import { ACTIONS } from './store/action-types';
@@ -46,7 +46,7 @@ function App() {
     return (
         <div>
             <Header />
-            <Universe />
+            <UI />
             {status === GAME_STATUS.PLAYER_DIED && <GameOverWindow />}
             {status === GAME_STATUS.PLAYER_FIGHTING && <FightWindow />}
         </div>

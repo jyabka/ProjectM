@@ -1,0 +1,11 @@
+.stats-container {
+    width: 18rem;
+    height: auto;
+}
+.UI-container {
+    display: flex;
+}
+.inventory-container {
+    height: auto;
+    width: 35rem;
+}
