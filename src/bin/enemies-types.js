@@ -36,27 +36,9 @@ export const enemiesTypes = [
         health: 1
     },
     {
-        lvl: 3,
-        name: 'Skeleton',
-        dmg: 7,
-        health: 70
-    },
-    {
         lvl: 4,
         name: 'Slime',
-        dmg: 15,
+        dmg: 1,
         health: 26
-    },
-    {
-        lvl: 4,
-        name: 'Walking',
-        dmg: 19,
-        health: 43
-    },
-    {
-        lvl: 4,
-        name: 'Mimic',
-        dmg: 25,
-        health: 64
     }
 ];

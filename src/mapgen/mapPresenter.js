@@ -26,7 +26,7 @@ function Cell({ cell, cellColumn }) {
 export default function MapPresenter() {
   const mapField = useSelector(state => state.map.map);
   return (
-    <div>
+    <div className='map-container'>
       <table className='grid nes-container is-dark'>
         <thead>
         {mapField.map((obj, row) => (

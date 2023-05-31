@@ -1,13 +1,22 @@
 td {
     margin: 0;
     padding: 0.5rem;
-    min-width: 1rem;
-    width: 1rem;
-    height: 1rem;
+    min-width: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
     text-align: center;
 }
-
+.map-container {
+    max-width: 60rem;
+    max-height: 50rem;
+    height: 55rem;
+    width: 50rem;
+}
 .grid{
+    background-image: url("../assets/textures/new_png_textures/FloorTile64x64.png");
+    background-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 table {
@@ -15,17 +24,31 @@ table {
     border-spacing: 0 !important;
 }
 .wall {
-    background: black
+    background-image: url("../assets/textures/new_png_textures/WallTile64x64.png");
+    background-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .tunnel {
-    background: gray;
+    background-image: url("../assets/textures/new_png_textures/FloorTile64x64.png");
+    background-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .player {
-    background: blue;
+    background-image: url("../assets/textures/new_png_textures/PlayerTile64x64.png");
+    background-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: drop-shadow(0 0 16px rgb(187, 144, 36));
 }
 
 .mob {
-    background: red;
+    background-image: url("../assets/textures/new_png_textures/EnemyTile64x64.png");
+    background-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: drop-shadow(0 0 16px #c800ff);
 }

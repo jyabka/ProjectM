@@ -1,11 +1,19 @@
 .stats-container {
-    width: 18rem;
+    width: 15rem;
     height: auto;
 }
 .UI-container {
     display: flex;
+    margin: 0;
 }
 .inventory-container {
     height: auto;
     width: 35rem;
+    margin-right:0;
+}
+.game-container {
+    max-width: 65rem;
+    max-height: 50rem;
+    width: 65rem;
+    height: 48rem;
 }

@@ -6,7 +6,9 @@ import { ACTIONS } from './action-types';
 
 export const FIGHT_VARIANTS = {
     ATTACK: 'ATTACK',
-    DEFEND: 'DEFEND'
+    DEFEND: 'DEFEND',
+    PARRY: 'PARRY',
+    RUNNING: 'RUNNING'
 };
 
 export const GAME_STATUS = {
@@ -212,7 +214,7 @@ function copyField(map) {
 //enemy functions
 function initMobs() {
     const mobs = [];
-    let mobCount = getRandomNumber(2, 3);
+    let mobCount = getRandomNumber(2, 5);
     for (let mC = 0; mC < mobCount; mC++) {
         mobs.push({
             id: nanoid(),

@@ -13,10 +13,10 @@ import { GAME_STATUS } from './store/gameReducer';
 function App() {
     const dispatch = useDispatch();
     const status = useSelector(state => state.map.status);
-    const upArrow = ['w', 'W', 'ArrowUp'];
-    const downArrow = ['s', 'S', 'ArrowDown'];
-    const leftArrow = ['a', 'A', 'ArrowLeft'];
-    const rightArrow = ['d', 'D', 'ArrowRight'];
+    const upArrow = ['ц','w', 'W', 'ArrowUp'];
+    const downArrow = ['ы','s', 'S', 'ArrowDown'];
+    const leftArrow = ['ф','a', 'A', 'ArrowLeft'];
+    const rightArrow = ['в','d', 'D', 'ArrowRight'];
 
     useKey(
         event => upArrow.includes(event.key),
@@ -45,8 +45,12 @@ function App() {
 
     return (
         <div>
-            <Header />
-            <UI />
+          <Header />
+          <UI />
+          <div className='DialogWindowWIP nes-container is-dark with-title'>
+            <p className='title'>Dialogs and quests</p>
+            <p>Work In Progress</p>
+          </div>
             {status === GAME_STATUS.PLAYER_DIED && <GameOverWindow />}
             {status === GAME_STATUS.PLAYER_FIGHTING && <FightWindow />}
         </div>
