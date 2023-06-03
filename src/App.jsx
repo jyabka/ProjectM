@@ -9,6 +9,7 @@ import { ACTIONS } from './store/action-types';
 import FightWindow from './windows/fightWindow';
 import GameOverWindow from './windows/gameOverWindow';
 import { GAME_STATUS } from './store/gameReducer';
+import {playWalkSound} from "./bin/playSound";
 
 function App() {
     const dispatch = useDispatch();
@@ -22,24 +23,28 @@ function App() {
         event => upArrow.includes(event.key),
         () => {
             dispatch({ type: ACTIONS.MOVE_CH, payload: DIRECTIONS.UP });
+            playWalkSound();
         }
     );
     useKey(
         event => downArrow.includes(event.key),
         () => {
             dispatch({ type: ACTIONS.MOVE_CH, payload: DIRECTIONS.DOWN });
+            playWalkSound();
         }
     );
     useKey(
         event => leftArrow.includes(event.key),
         () => {
             dispatch({ type: ACTIONS.MOVE_CH, payload: DIRECTIONS.LEFT });
+            playWalkSound();
         }
     );
     useKey(
         event => rightArrow.includes(event.key),
         () => {
             dispatch({ type: ACTIONS.MOVE_CH, payload: DIRECTIONS.RIGHT });
+            playWalkSound();
         }
     );
 
