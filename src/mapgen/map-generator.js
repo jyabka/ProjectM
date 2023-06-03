@@ -1,7 +1,7 @@
 import { WALL_TILE } from '../configs/settings';
-import { DIMENSIONS, MAX_LENGTH, MAX_TUNNELS } from './mapgen-settings';
+import { DIMENSIONS, MAX_LENGTH, MAX_TUNNELS } from '../configs/settings';
 
-//creating field with parameters from mapgen-settings.js
+//creating field with parameters from config/settings.js
 export function createGrid(num, dimensions) {
   let grid = [];
   for (let y = 0; y < dimensions; y++) {

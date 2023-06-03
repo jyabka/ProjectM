@@ -1,5 +1,5 @@
 import { createGrid, createMap } from './map-generator';
-import { WALL } from './mapgen-settings';
+import { WALL_TILE} from '../configs/settings';
 
 test('Mapgen| grid test', () => {
     const dimensions = 10;
@@ -18,7 +18,7 @@ test('Mapgen| creator test', () => {
     const map = createMap(dimensions, max_tunnels, max_length);
     for (let i = 0; i < dimensions; i++)
         for (let j = 0; j < dimensions; j++)
-            if (map[i][j] === WALL) {
+            if (map[i][j] === WALL_TILE) {
                 test_status = 1;
                 break;
             }

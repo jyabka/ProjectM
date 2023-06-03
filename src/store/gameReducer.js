@@ -1,9 +1,9 @@
 import { nanoid } from 'nanoid';
 import { createMap } from '../mapgen/map-generator';
-import { DIMENSIONS } from '../mapgen/mapgen-settings';
+import { DIMENSIONS } from '../configs/settings';
 import { DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE } from '../configs/settings';
 import { ACTIONS } from './action-types';
-import { entitiesTypes} from "../bin/entities-types";
+import { entitiesTypes } from "../bin/entities-types";
 
 export const FIGHT_VARIANTS = {
     ATTACK: 'ATTACK',
@@ -198,12 +198,14 @@ function copyField(map) {
 //creating enemies
 function initMobs() {
     const mobs = [];
+    const minHp = 10;   const maxHp = 35;
+    const min = 1;   const max = 4;
     let mobCount = getRandomNumber(2, 5);
     for (let mC = 0; mC < mobCount; mC++) {
         mobs.push({
             id: nanoid(),
-            health: 20,
-            dmg: 2
+            health: Math.floor(Math.random() * (maxHp - minHp + 1)),
+            dmg: Math.floor(Math.random() * (max - min + 1) + min)
         });
     }
 
@@ -220,7 +222,6 @@ function getRandomNumber(min, max) {
 
 export function getRandomMobSpawn(map, mob) {
     const copiedField = copyField(map);
-
     let x, y;
     let isSpawned = false;
     do {
@@ -287,7 +288,7 @@ export default function reducer(state = initialState, action) {
             const mobs = state.mobs
                 .map(mob => {
                     if (mob.id === state.player.fightingWith) {
-                        if (mob.health > 0)
+                        if (mob.health > state.player.dmg)
                             return { ...mob, health: mob.health - state.player.dmg };
                         else {
                             mobKilled = mob;
@@ -341,13 +342,13 @@ export default function reducer(state = initialState, action) {
                 }
             };
 
-        case ACTIONS.DEFEND_ACTION:
+        case ACTIONS.HEAL_ACTION:
             if (state.status !== GAME_STATUS.PLAYER_FIGHTING) return state;
             return {
                 ...state,
                 player: {
                     ...state.player,
-                    health: state.player.health + state.player.maxHealth
+                    health: state.player.health + state.player.healthRegen
                 }
             };
         case ACTIONS.NEXT_LEVEL:

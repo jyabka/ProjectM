@@ -1,10 +1,10 @@
-const min = 20;
-const max = 40;
+const minHpRegen = 10;
+const maxHpRegen = 40;
 
 export const entitiesTypes = {
   player: {
     tile: "PLAYER_TILE",
-    maxHealth: min + Math.floor(Math.random() * (max - min)),
+    healthRegen: minHpRegen + Math.floor(Math.random() * (maxHpRegen - minHpRegen)),
     health: 20,
     dmg: 4,
     score: 0,
@@ -14,6 +14,6 @@ export const entitiesTypes = {
     tile: "ENEMY_TILE",
     id: 0,
     health: 20,
-    dmg: 2,
+    dmg: 0,
   }
 }
