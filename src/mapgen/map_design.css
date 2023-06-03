@@ -11,6 +11,8 @@ td {
     max-height: 50rem;
     height: 55rem;
     width: 50rem;
+    margin: 0;
+    padding: 0;
 }
 .grid{
     background-image: url("../assets/textures/new_png_textures/FloorTile64x64.png");

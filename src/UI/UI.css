@@ -1,19 +1,36 @@
 .stats-container {
-    width: 15rem;
-    height: auto;
+    min-width: 15rem;
+    grid-area: A;
 }
 .UI-container {
-    display: flex;
+    display: grid;
     margin: 0;
+    column-gap: 25px;
+    row-gap: 0;
+    grid-template-areas:
+    "A B C C"
+    "A B C C"
+    "A B D E"
+    "F F F F";
+    justify-items: stretch;
 }
 .inventory-container {
-    height: auto;
-    width: 35rem;
-    margin-right:0;
+    grid-area: C;
+    min-width: 45rem;
 }
 .game-container {
-    max-width: 65rem;
-    max-height: 50rem;
-    width: 65rem;
-    height: 48rem;
+    grid-area: B;
+    margin: 0;
+    min-width: 45rem;
+    max-height: 49rem;
+}
+.dialog-container {
+    grid-area: D;
+}
+.character-container {
+    grid-area: E;
+}
+.tips-container {
+    grid-area: F;
+    min-height: 4rem;
 }

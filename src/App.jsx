@@ -44,16 +44,12 @@ function App() {
     );
 
     return (
-        <div>
+        <body className='window'>
           <Header />
           <UI />
-          <div className='DialogWindowWIP nes-container is-dark with-title'>
-            <p className='title'>Dialogs and quests</p>
-            <p>Work In Progress</p>
-          </div>
             {status === GAME_STATUS.PLAYER_DIED && <GameOverWindow />}
             {status === GAME_STATUS.PLAYER_FIGHTING && <FightWindow />}
-        </div>
+        </body>
     );
 }
 

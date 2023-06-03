@@ -11,9 +11,9 @@ function UI() {
           <div className='stats-container nes-container is-dark with-title'>
             <p className='title'>Statistics</p>
             <tbody className='nes-table is-dark'>
-            <tr>  <th className='hp'>HP </th><th>{player.health}</th>  </tr>
-            <tr>  <th className='ap'>AP </th><th>{player.dmg}</th> </tr>
-            <tr>  <th className='sp'>SP </th><th>{player.score}</th> </tr>
+              <tr className ='hp'> <th>HP </th><th>{player.health}</th>  </tr>
+              <tr className ='ad'> <th>AD </th><th>{player.dmg}</th> </tr>
+              <tr className ='gc'> <th>GC </th><th>{player.score}</th> </tr>
             </tbody>
           </div>
           <div className='game-container'>
@@ -22,6 +22,12 @@ function UI() {
           <div className='inventory-container nes-container is-dark with-title'>
             <p className='title'>Inventory</p>
           </div>
+          <div className='dialog-container nes-container is-dark with-title'>
+            <p className='title'>Dialogs and quests</p>
+            <p>Work In Progress</p>
+          </div>
+          <div className='character-container nes-container is-dark'></div>
+          <div className='tips-container nes-container is-dark'></div>
         </div>
     );
 }

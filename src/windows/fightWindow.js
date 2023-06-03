@@ -47,7 +47,7 @@ export default function FightWindow() {
             <span className="nes-text is-disabled">Enemy HP:{mob.health} DMG:2</span>
             <br />
             <span className="nes-text is-disabled">
-                PLayer HP:{player.health} DMG:{player.dmg} SCORE: {player.score}
+                PLayer HP:{player.health} DMG:{player.dmg}
             </span>
         </div>
     );
