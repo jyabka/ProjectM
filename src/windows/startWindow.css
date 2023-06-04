@@ -1,0 +1,44 @@
+.start-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 50;
+    width: 100%;
+    height: 100%;
+    background: #212529;
+    display: block;
+}
+.slides {
+
+}
+.slide-text {
+    bottom: 0;
+}
+.first-slide {
+    background: url("../assets/textures/beginning/TavernEnter.jpg") no-repeat;
+    background-size: cover;
+    min-width: 50em;
+    min-height: 50em;
+    z-index: 14;
+}
+.second-slide {
+    background: url("../assets/textures/beginning/InTavern.jpg") no-repeat ;
+    background-size: cover;
+    min-width: 50em;
+    min-height: 50em;
+    z-index: 13;
+}
+.third-slide {
+    background: url("../assets/textures/beginning/DarkFigure.jpg") no-repeat;
+    background-size: cover;
+    min-width: 50em;
+    min-height: 50em;
+    z-index: 12;
+}
+.fourth-slide {
+    background: url("../assets/textures/beginning/Dungeon.jpg") no-repeat;
+    background-size: cover;
+    min-width: 50em;
+    min-height: 50em;
+    z-index: 11;
+}

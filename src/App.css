@@ -1,0 +1,27 @@
+.window {
+    background: #212529;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #9b9b9b #252525;
+}
+
+*::-webkit-scrollbar {
+    height: 1px;
+    width: 6px;
+}
+*::-webkit-scrollbar-track {
+    background: #252525;
+}
+*::-webkit-scrollbar-thumb {
+    background-color: #9b9b9b;
+    border-radius: 8px;
+    border: 2px solid #252525;
+}

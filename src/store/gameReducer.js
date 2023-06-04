@@ -1,26 +1,13 @@
 import { nanoid } from 'nanoid';
 import { createMap } from '../mapgen/map-generator';
-import { DIMENSIONS } from '../mapgen/mapgen-settings';
+import { DIMENSIONS } from '../configs/settings';
 import { DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE } from '../configs/settings';
-import { ACTIONS } from './action-types';
+import {ACTIONS, GAME_STATUS} from './action-types';
+import { entitiesTypes } from "../bin/entities-types";
 
-export const FIGHT_VARIANTS = {
-    ATTACK: 'ATTACK',
-    DEFEND: 'DEFEND'
-};
 
-export const GAME_STATUS = {
-    PLAYER_WANDER: 2,
-    PLAYER_FIGHTING: 1,
-    PLAYER_DIED: 0
-};
 
 const mobs = initMobs();
-
-const MOB_DMG = 2;
-
-const min = 20;
-const max = 40;
 
 const initialState = {
     map: initField(),
@@ -31,13 +18,8 @@ const initialState = {
 
 //work w/ player
 function initPlayer() {
-    return {
-        maxHealth: min + Math.floor(Math.random() * (max - min)),
-        health: 20,
-        dmg: 4,
-        score: 0,
-        fightingWith: null
-    };
+    const playerActor = entitiesTypes.player;
+    return playerActor;
 }
 
 function initStatus() {
@@ -73,13 +55,6 @@ function getMobIdByCoordinates(state, coords) {
         }
     }
 }
-/*
-1. Копируем field
-2. Находим игрока на field / PLAYER_TILE = 2
-3. Прожимаем кнопку движения
-4. Проверяем возможность для прохода
-5. Изменяем позицию игрока
-*/
 
 export function checkWallCollision(map, playerPos) {
     if (
@@ -183,7 +158,7 @@ export function initField() {
 function initMapAndMobs() {
     const mobs = initMobs();
     let map = createMap();
-    map = getRandomPlayerSpawn(map); // разместили игрока
+    map = getRandomPlayerSpawn(map); // player placement
 
     for (let mob of mobs) {
         const { x, y } = getRandomMobSpawnCoords(map);
@@ -209,65 +184,66 @@ function copyField(map) {
     return editedField;
 }
 
-//enemy functions
+//creating enemies
 function initMobs() {
     const mobs = [];
-    let mobCount = getRandomNumber(2, 3);
+    const minHp = 10;   const maxHp = 35;
+    const min = 1;   const max = 4;
+    let mobCount = getRandomNumber(2, 5);
     for (let mC = 0; mC < mobCount; mC++) {
         mobs.push({
             id: nanoid(),
-            health: 20,
-            dmg: 2
+            health: Math.floor(Math.random() * (maxHp - minHp + 1)),
+            dmg: Math.floor(Math.random() * (max - min + 1) + min)
         });
     }
 
     return mobs;
 }
 
+//generating number of enemies
 function getRandomNumber(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-export function getRandomMobSpawn(map, mob) {
-    const copyField1 = copyField(map);
 
-    // function 1
+export function getRandomMobSpawn(map, mob) {
+    const copiedField = copyField(map);
     let x, y;
     let isSpawned = false;
     do {
         x = getRandomTile(0, DIMENSIONS);
         y = getRandomTile(0, DIMENSIONS);
-        if (copyField1[x][y] === FLOOR_TILE) {
+        if (copiedField[x][y] === FLOOR_TILE) {
             isSpawned = true;
         }
     } while (!isSpawned);
-    //
 
-    // function 2
-    copyField1[x][y] = ENEMY_TILE;
+    copiedField[x][y] = ENEMY_TILE;
 
-    // function 3
     mob.x = x;
     mob.y = y;
-    return copyField1;
+    return copiedField;
 }
 
+//random coords of enemy spawn
 export function getRandomMobSpawnCoords(map) {
-    const copyField1 = copyField(map);
+    const copiedField = copyField(map);
     let x, y;
     let isSpawned = false;
     do {
         x = getRandomTile(0, DIMENSIONS);
         y = getRandomTile(0, DIMENSIONS);
-        if (copyField1[x][y] === FLOOR_TILE) {
+        if (copiedField[x][y] === FLOOR_TILE) {
             isSpawned = true;
         }
     } while (!isSpawned);
     return { x, y };
 }
 
+// map with all entities includes player
 function getRandomSpawnEntities(map) {
     let mapWithEntities = getRandomPlayerSpawn(map);
     for (let mobIndex = 0; mobIndex < mobs.length; mobIndex++) {
@@ -301,7 +277,7 @@ export default function reducer(state = initialState, action) {
             const mobs = state.mobs
                 .map(mob => {
                     if (mob.id === state.player.fightingWith) {
-                        if (mob.health > 0)
+                        if (mob.health > state.player.dmg)
                             return { ...mob, health: mob.health - state.player.dmg };
                         else {
                             mobKilled = mob;
@@ -333,13 +309,13 @@ export default function reducer(state = initialState, action) {
                     player: {
                         ...state.player,
                         fightingWith: null,
-                        score: state.player.score + 1
+                        score: state.player.score + getRandomNumber(1, 25)
                     },
                     status: GAME_STATUS.PLAYER_WANDER
                 };
             }
 
-            if (state.player.health - MOB_DMG <= 0) {
+            if (state.player.health - entitiesTypes.enemy.dmg <= 0) {
                 return {
                     ...state,
                     status: GAME_STATUS.PLAYER_DIED
@@ -351,17 +327,17 @@ export default function reducer(state = initialState, action) {
                 mobs,
                 player: {
                     ...state.player,
-                    health: state.player.health - MOB_DMG
+                    health: state.player.health - entitiesTypes.enemy.dmg
                 }
             };
 
-        case ACTIONS.DEFEND_ACTION:
+        case ACTIONS.HEAL_ACTION:
             if (state.status !== GAME_STATUS.PLAYER_FIGHTING) return state;
             return {
                 ...state,
                 player: {
                     ...state.player,
-                    health: state.player.health + state.player.maxHealth
+                    health: state.player.health + state.player.healthRegen
                 }
             };
         case ACTIONS.NEXT_LEVEL:

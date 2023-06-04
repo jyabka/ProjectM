@@ -1,34 +1,56 @@
 td {
     margin: 0;
-    padding: 0px;
-    min-width: 32px;
-    width: 32px;
-    height: 32px;
+    padding: 0.5rem;
+    min-width: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
     text-align: center;
 }
-
-.grid {
-    margin: 1em auto;
-    background: url("../textures/floor_tile.png");
+.map-container {
+    max-width: 60rem;
+    max-height: 50rem;
+    height: 55rem;
+    width: 50rem;
+    margin: 0;
+    padding: 0;
+}
+.grid{
+    background-image: url("../assets/textures/new_png_textures/FloorTile64x64.png");
+    background-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 table {
     border-collapse: collapse;
-    border-spacing: -1 !important;
+    border-spacing: 0 !important;
 }
-
 .wall {
-    background: url("../textures/wall_tile.png");
+    background-image: url("../assets/textures/new_png_textures/WallTile64x64.png");
+    background-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .tunnel {
-    background: url("../textures/floor_tile.png");
+    background-image: url("../assets/textures/new_png_textures/FloorTile64x64.png");
+    background-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
 }
 
 .player {
-    background: url("../textures/player_sprite.png");
+    background-image: url("../assets/textures/new_png_textures/PlayerTile64x64.png");
+    background-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: drop-shadow(0 0 16px rgb(187, 144, 36));
 }
 
 .mob {
-    background: url("../textures/undead_sprite.png");
+    background-image: url("../assets/textures/new_png_textures/EnemyTile64x64.png");
+    background-size: 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    filter: drop-shadow(0 0 16px #c800ff);
 }
