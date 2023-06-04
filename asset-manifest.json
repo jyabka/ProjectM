@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/ProjectM/static/css/main.a6ceae87.chunk.css",
+    "main.js": "/ProjectM/static/js/main.e83aae8f.chunk.js",
+    "main.js.map": "/ProjectM/static/js/main.e83aae8f.chunk.js.map",
+    "runtime-main.js": "/ProjectM/static/js/runtime-main.75e7df60.js",
+    "runtime-main.js.map": "/ProjectM/static/js/runtime-main.75e7df60.js.map",
+    "static/css/2.e71c1181.chunk.css": "/ProjectM/static/css/2.e71c1181.chunk.css",
+    "static/js/2.57f86c6b.chunk.js": "/ProjectM/static/js/2.57f86c6b.chunk.js",
+    "static/js/2.57f86c6b.chunk.js.map": "/ProjectM/static/js/2.57f86c6b.chunk.js.map",
+    "index.html": "/ProjectM/index.html",
+    "static/css/2.e71c1181.chunk.css.map": "/ProjectM/static/css/2.e71c1181.chunk.css.map",
+    "static/css/main.a6ceae87.chunk.css.map": "/ProjectM/static/css/main.a6ceae87.chunk.css.map",
+    "static/js/2.57f86c6b.chunk.js.LICENSE.txt": "/ProjectM/static/js/2.57f86c6b.chunk.js.LICENSE.txt",
+    "static/media/startWindow.css": "/ProjectM/static/media/TavernEnter.aca965c5.jpg",
+    "static/media/DrinkPotion.6913b4bd.mp3": "/ProjectM/static/media/DrinkPotion.6913b4bd.mp3",
+    "static/media/FightSound.34398866.mp3": "/ProjectM/static/media/FightSound.34398866.mp3",
+    "static/media/Leaving-For-Valhalla(AlexanderNakarada).5b4d6299.mp3": "/ProjectM/static/media/Leaving-For-Valhalla(AlexanderNakarada).5b4d6299.mp3",
+    "static/media/OpenPotion.00a24de6.mp3": "/ProjectM/static/media/OpenPotion.00a24de6.mp3",
+    "static/media/Step.c2439e20.mp3": "/ProjectM/static/media/Step.c2439e20.mp3"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.75e7df60.js",
+    "static/css/2.e71c1181.chunk.css",
+    "static/js/2.57f86c6b.chunk.js",
+    "static/css/main.a6ceae87.chunk.css",
+    "static/js/main.e83aae8f.chunk.js"
+  ]
+}
