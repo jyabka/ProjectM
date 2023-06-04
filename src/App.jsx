@@ -8,8 +8,9 @@ import { DIRECTIONS } from './configs/settings';
 import { ACTIONS } from './store/action-types';
 import FightWindow from './windows/fightWindow';
 import GameOverWindow from './windows/gameOverWindow';
-import { GAME_STATUS } from './store/gameReducer';
+import { GAME_STATUS } from './store/action-types';
 import { playWalkSoundWD } from "./bin/playSound";
+import StartWindow from "./windows/startWindow";
 
 function App() {
     const dispatch = useDispatch();
@@ -49,12 +50,12 @@ function App() {
     );
 
     return (
-        <body className='window'>
-          <Header />
-          <UI />
-            {status === GAME_STATUS.PLAYER_DIED && <GameOverWindow />}
-            {status === GAME_STATUS.PLAYER_FIGHTING && <FightWindow />}
-        </body>
+      <body className='window'>
+        <Header />
+        <UI />
+        {status === GAME_STATUS.PLAYER_DIED && <GameOverWindow />}
+        {status === GAME_STATUS.PLAYER_FIGHTING && <FightWindow />}
+      </body>
     );
 }
 

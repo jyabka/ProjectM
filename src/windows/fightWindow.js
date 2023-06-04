@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './fightWindow.css';
 import 'nes.css/css/nes.css';
 import { selectFightingMob, selectPlayer } from '../store/mapSelectors';
-import { FIGHT_VARIANTS } from '../store/gameReducer';
+import { FIGHT_VARIANTS } from '../store/action-types';
 import {playFightSound, playHealSound} from "../bin/playSound";
 
 export default function FightWindow() {

@@ -2,21 +2,10 @@ import { nanoid } from 'nanoid';
 import { createMap } from '../mapgen/map-generator';
 import { DIMENSIONS } from '../configs/settings';
 import { DIRECTIONS, ENEMY_TILE, FLOOR_TILE, PLAYER_TILE, WALL_TILE } from '../configs/settings';
-import { ACTIONS } from './action-types';
+import {ACTIONS, GAME_STATUS} from './action-types';
 import { entitiesTypes } from "../bin/entities-types";
 
-export const FIGHT_VARIANTS = {
-    ATTACK: 'ATTACK',
-    DEFEND: 'DEFEND',
-    PARRY: 'PARRY',
-    RUNNING: 'RUNNING'
-};
 
-export const GAME_STATUS = {
-    PLAYER_WANDER: 2,
-    PLAYER_FIGHTING: 1,
-    PLAYER_DIED: 0
-};
 
 const mobs = initMobs();
 

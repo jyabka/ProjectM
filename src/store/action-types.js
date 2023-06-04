@@ -5,3 +5,16 @@ export const ACTIONS = {
     RESET: 'RESET',
     NEXT_LEVEL: 'NEXT_LEVEL'
 };
+
+export const FIGHT_VARIANTS = {
+    ATTACK: 'ATTACK',
+    DEFEND: 'DEFEND',
+    PARRY: 'PARRY',
+    RUNNING: 'RUNNING'
+};
+
+export const GAME_STATUS = {
+    PLAYER_WANDER: 2,
+    PLAYER_FIGHTING: 1,
+    PLAYER_DIED: 0
+};
